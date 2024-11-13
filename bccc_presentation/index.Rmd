@@ -1,0 +1,494 @@
+---
+title: "My approach to world language lessons: being a bridge"
+subtitle: 'A ten minute overview'
+author  : "Kyle Parrish"
+date    : "</br>Winter 2024</br>Last update: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: [default, hygge, my-css.css, rutgers-fonts]
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: true
+      ratio: 16:9
+---
+
+```{r, setup, include=FALSE}
+library("fontawesome")
+library("RefManageR")
+knitr::opts_chunk$set(
+  comment = '', fig.width = 6, fig.height = 6, message = FALSE, warning = FALSE, echo = FALSE
+)
+```
+
+```{r xaringan-themer, include=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  # primary_color = "#345865",
+  primary_color = "#B56B6F",
+  secondary_color = "#2c8475",
+  black_color = "#4242424",
+  white_color = "#FFF",
+  base_font_size = "25px",
+  # text_font_family = "Jost",
+  # text_font_url = "https://indestructibletype.com/fonts/Jost.css",
+  header_font_google = google_font("Times New Roman", "400", "700"),
+  header_font_weight = "400",
+  inverse_header_color = "#eaeaea",
+  title_slide_text_color = "black",
+  text_slide_number_color = "#9a9a9a",
+  text_bold_color = "#f79334",
+  code_inline_color = "#B56B6F",
+  code_highlight_color = "transparent",
+  link_color = "#2c8475",
+  table_row_even_background_color = lighten_color("#345865", 0.9),
+  extra_fonts = list(
+    google_font("Times New Roman", "400")
+  ),
+  colors = c(
+    green = "#31b09e",
+    "green-dark" = "#2c8475",
+    highlight = "#87f9bb",
+    purple = "#887ba3",
+    pink = "#B56B6F",
+    orange = "#f79334",
+    red = "#dc322f",
+    `blue-dark` = "#002b36",
+    `text-dark` = "#202020",
+    `text-darkish` = "#424242",
+    `text-mild` = "#606060",
+    `text-light` = "#9a9a9a",
+    `text-lightest` = "#eaeaea"
+  ),
+  extra_css = list(
+    ".remark-slide-content h3" = list(
+      "margin-bottom" = 0, 
+      "margin-top" = 0
+    ),
+    ".smallish, .smallish .remark-code-line" = list(`font-size` = "0.9em")
+  )
+)
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "share_again"))
+xaringanExtra::use_extra_styles()
+```
+
+
+```{r components, include=FALSE}
+slides_from_images <- function(
+  path,
+  regexp = NULL,
+  class = "hide-count",
+  background_size = "contain",
+  background_position = "top left"
+) {
+  if (isTRUE(getOption("slide_image_placeholder", FALSE))) {
+    return(glue::glue("Slides to be generated from [{path}]({path})"))
+  }
+  if (fs::is_dir(path)) {
+    imgs <- fs::dir_ls(path, regexp = regexp, type = "file", recurse = FALSE)
+  } else if (all(fs::is_file(path) && fs::file_exists(path))) {
+    imgs <- path
+  } else {
+    stop("path must be a directory or a vector of images")
+  }
+  imgs <- fs::path_rel(imgs, ".")
+  breaks <- rep("\n---\n", length(imgs))
+  breaks[length(breaks)] <- ""
+
+  txt <- glue::glue("
+  class: {class}
+  background-image: url('{imgs}')
+  background-size: {background_size}
+  background-position: {background_position}
+  {breaks}
+  ")
+
+  paste(txt, sep = "", collapse = "")
+}
+options("slide_image_placeholder" = FALSE)
+```
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## My goal is to act as a **bridge** for students.
+
+--
+
+### I aim to influence and encourage students, and I connect them to the next steps while building **language proficiency**, **cultural competence**, and **general skills** that will serve them beyond the classroom. 
+
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+## My Spanish lessons follow ACTFL guiding principles to focus meaning and communicative activities.
+
+
+---
+## Within these meaning-driven language lessons, I integrate the **5 C's of Language Education**.
+
+--
+
+### **Communication** in more than one language for a variety of situations.
+
+--
+
+### Creating **cultural** competence.
+
+--
+
+### Making **connections** with other disciplines.
+
+--
+
+### Making **comparisons** between cultures and languages.
+
+--
+
+### Engaging **communities** at home and abroad.
+
+
+---
+
+# A practical example: Backward design structure
+
+--
+
+### Identify desired results... 
+
+--
+
+### THEN determine acceptable evidence...
+
+--
+
+### THEN plan learning experiences and instruction. 
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+## We want to learn **-ar verb conjugations** in the present tense.
+
+--
+
+Acceptable evidence: Given an infinitive, the student can **produce a sentence** using the correct form of a verb and **generalize** this ability to novel words.
+
+
+---
+
+
+count: false
+background-image: url(./mg/familiar_cook.png)
+background-size: 50%
+
+
+.footnote[*Communication: interpersonal*]
+
+---
+
+count: false
+background-image: url(./mg/generalize_cook.png)
+background-size: 50%
+
+.footnote[*Communication: interpersonal*]
+
+---
+
+count: false
+background-image: url(./mg/lyster.png)
+background-size: 90%
+
+---
+
+# An example: Let's cook! 
+
+--
+
+### 1. Introduce authentic cultural material (a recipe in Spanish).
+
+--
+
+### 2. Do an interpretive activity.
+
+--
+
+### 3. Zoom in on the grammatical aspects of the material.
+
+--
+
+### 4. Do guided practice.
+
+--
+
+### 5. Check for understanding with the acceptable evidence activity. 
+
+
+.footnote[*Communication: interpersonal, interpretive; connections; culture; comparisons*]
+
+---
+
+count: false
+background-image: url(./mg/ingredients.png)
+background-size: 40%
+
+
+.footnote[*Communication: interpretive*]
+
+---
+
+count: false
+background-image: url(./mg/order.png)
+background-size: 50%
+
+.footnote[*Communication: interpersonal*]
+
+---
+
+count: false
+background-image: url(./mg/infinitive_activity.png)
+background-size: 50%
+
+.footnote[*Comparisons*]
+
+---
+
+
+count: false
+background-image: url(./mg/familiar_cook.png)
+background-size: 50%
+
+.footnote[*Communication: interpersonal*]
+
+---
+
+count: false
+background-image: url(./mg/generalize_cook.png)
+background-size: 50%
+
+.footnote[*Communication: interpersonal*]
+
+---
+
+# General Lesson Structure
+*Based on the ACTFL Contemporary Lesson Plan Template (2021)*
+
+**50 minutes**
+
+.pull-left[
+.full-width[
+.content-box-red[
+
+**Warm up**: A brief review of the content of the previous class. (10 minutes)
+
+**New Thematic Introduction**: Demonstration and walk through of the topic of the day. (10 minutes)
+
+**Guided and communicative Practice**: Group or individual guided practice with feedback.
+(20 minutes)
+
+**Cool down**: A review of the relevant topic and reiteration of the major takeaways. (10 minutes) 
+]]]
+
+---
+
+# Conclusion
+
+
+### I am eager to act as not just an instructor, but a **bridge for students** to connect them to new resources and paths forward.
+
+--
+
+### I want to **give back to my home state**: I have been privileged and gained many unique experiences in my work.
+
+--
+
+### My research specialized in second language acquisition and I make **research-based innovations** in my teaching. 
+
+--
+
+### If desired, I can supervise or involve students in **undergraduate research**.
+
+
+---
+
+count: false
+class: title-slide-final
+background-color: white
+background-image: url(), url(), url(https://edsurge.imgix.net/uploads/post/image/12460/empathy-1565029076.jpg?auto=compress%2Cformat&w=1600&h=648&fit=crop), url(./libs/img/qr.png)
+background-size: 100px, 130px, 350px, 160px
+background-position: 20% 50%, 80% 50%, 50% 25%, 50% 65%
+
+
+# Thank you for your time!
+
+<br><br><br><br><br><br><br>
+
+.large[
+
+|                                     |                                         |
+| ----------------------------------: | :-------------------------------------- |
+| `r fa("paper-plane", fill = "blue")` | .lightgrey[kparrish.linguistics@gmail.com] |
+| `r fa("github", fill = "blue")`     | .lightgrey[https://github.com/kparrish92]                   |
+| `r fa("link", fill = "blue")`        | .lightgrey[https://kparrish92.github.io]          |
+
+]
+
+
+
+
+---
+
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+## Additonal examples
+
+---
+
+# Communication 
+
+- **Communicate effectively** in more than one language for a variety of situations.
+
+--
+
+.pull-left[
+.full-width[
+.content-box-red[
+- Interpersonal 
+
+- Interpretive
+
+- Presentational
+]]]
+
+--
+
+.pull-right[
+.full-width[
+.content-box-blue[
+- Who is left handed? (WU)
+
+- Let's watch Netflix! (Intro)
+
+- Teach us a recipe! (GP)
+]]]
+
+---
+
+# Culture
+
+Interact with **cultural competence** and understanding.
+
+--
+
+.pull-left[
+.full-width[
+.content-box-red[
+Relating Cultural **Practices** and **Products** to perspectives
+]]]
+
+--
+
+.pull-right[
+.full-width[
+.content-box-blue[
+**Tú** and **usted** in among Spanish-speaking countries (Intro)
+
+The use of **literature** or **art** in language activities
+]]]
+
+---
+
+# Connections
+
+**Connect with other disciplines** and acquire information and diverse perspectives,
+
+--
+
+.pull-left[
+.full-width[
+.content-box-red[
+Develop critical thinking and to solve problems creatively.
+
+Acquiring Information and Diverse Perspectives
+]]]
+
+--
+
+.pull-right[
+.full-width[
+.content-box-blue[
+**Analytical Language Lovers**: Linguistics (syntax, computational, statistics).
+
+**Artistic Language Lovers**: Literature, film, creative writing. 
+
+**Both**: Translation.
+]]]
+
+---
+
+# Comparison
+
+Develop **insight into the nature of language** and culture in order to interact with cultural competence.
+
+--
+
+.pull-left[
+.full-width[
+.content-box-red[
+Language Comparisons
+
+Cultural Comparisons 
+]]]
+
+--
+
+.pull-right[
+.full-width[
+.content-box-blue[
+Ask students: how can we **define language**?
+
+**Compare pronunciation** in Spanish and English.
+
+Focusing both on what we have in common, but may express differently: love for family and love for food.
+]]]
+
+---
+
+# Communities
+
+Communicate and interact with cultural competence in order to **participate in multilingual communities**.
+--
+
+.pull-left[
+.full-width[
+.content-box-red[
+School and Global Communities
+
+Lifelong Learning
+]]]
+
+--
+
+.pull-right[
+.full-width[
+.content-box-blue[
+Where can we speak Spanish in Washington?
+
+There are many open materials in my courses (like this presentation)!
+]]]
+
