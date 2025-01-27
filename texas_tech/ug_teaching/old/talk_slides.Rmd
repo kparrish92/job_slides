@@ -1,0 +1,520 @@
+---
+title: "An introduction to third language acquisition"
+subtitle: 'Undergraduate Teaching Demonstration'
+author  : "Kyle Parrish"
+date    : "</br>Spring 2025</br>Last update: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: [default, hygge, my-css.css, rutgers-fonts]
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+```{css, echo = FALSE}
+.remark-slide-content {
+  font-size: 20px;
+  padding: 20px 80px 20px 80px;
+}
+.remark-code, .remark-inline-code {
+  background: #f0f0f0;
+}
+.remark-code {
+  font-size: 24px;
+}
+.huge .remark-code { /*Change made here*/
+  font-size: 200% !important;
+}
+.tiny .remark-code { /*Change made here*/
+  font-size: 70% !important;
+}
+.med .remark-code { /*Change made here*/
+  font-size: 120% !important;
+}
+```
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, echo = FALSE, dpi = 300)
+```
+
+```{r, load_data}
+library(tidyverse)
+library(sjPlot)
+library(here)
+library(lme4)
+
+mod0 = read_rds(here("practice_talk", "data", "study1", "mod0.rds"))
+```
+
+# Introduction
+
+.big[
+- **Third Language Acquistion** is the process of learning a language by someone who already knows 2 languages. 
+]
+
+--
+
+.big[
+- L3 models attempt to predict acquisition patterns when 2 languages are available
+]
+
+--
+
+- Complicating factors: 
+ - Range of L2 ultimate attainment 
+ - Language use and dominance 
+ - Age effects 
+ 
+???
+
+The difficulty of learning a new language in adulthood has a well documented history.   
+Much less is known about the acquisition of a third language (L3A)
+
+Research in third language acquisition has attempted to model the interplay between L1 and L2 language systems and their cumulative influence in the process of the acquisition of a third.
+
+mong questions asked by third language models is whether the L1 or L2, or a combination of both languages, serves as the basis in L3 acquisition.
+
+This question is complicated in the context of multilingualism due to the widespread diversity in bilingual populations that include wide variation in ultimate attainment in adult L2 learners, and, in the case of phonological acquisition, wide variation in the production patterns of L2 segments
+
+---
+
+# Questions 
+
+.big[
+ **Question 1:** Does just 1 language, or do both languages affect L3A? 
+ 
+ **Question 2:** Are bilinguals better at learning languages than monolinguals?
+]
+
+--
+
+L3 models are guided by these questions. 
+
+ - What do you think? 
+ 
+ - Take a few moments to write down your hypotheses to both queations. 
+
+---
+
+# Models
+
+.big[
+The **Cumulative Enhancement Model** (Flynn, Foley and Vinnitskaya, 2004)
+]
+
+--
+
+.pull-left[
+L3 learners will can draw on **both languages** they know during L3A.
+
+Both languages are helpful.
+
+**Q1:** Does just 1 language, or do both languages affect L3A? 
+   
+   Both languages.
+  
+**Q2:** Are bilinguals better at learning languages than monolinguals?
+
+   Yes.
+]
+
+--
+
+.pull-right[
+## Evidence: 
+
+L3 English influenced by **L2** (L1 Kazakh-L2 Russian) Flynn et al. (2004)
+
+L3 English influenced by **L1** (Hungarian L1-German L2) Berkés and Flynn (2012) 
+]
+
+---
+
+# Models
+
+.big[
+The **L2 Status Factor** (Bardel & Falk, 2007)
+]
+
+--
+
+.pull-left[
+L2 will influence the L3 
+
+**Q1:** Does just 1 language, or do both languages affect L3A? 
+
+ONLY the L2 affects the L3 in the beginning.
+
+**Q2:** Are bilinguals better at learning languages than monolinguals?
+
+No
+]
+
+--
+
+.pull-right[
+## Evidence (Bardel and Falk, 2007)
+
+Word order in the L3
+
+**Group 1:** L1 Non-Germanic L2 Germanic L3 Germanic
+
+**Group 2:** L1 Germanic L2 Non-Germanic L3 Germanic 
+
+Groups behaved **differently** - Group 1 outperformed group 2 
+ - Group 1: target like L3 word order 
+ - Group 2: L2 and non-target like L3 word order 
+]
+
+---
+
+# Models   
+  
+.big[  
+The **Typological Primacy Model** (Rothman, 2011)
+]
+
+--
+
+.pull-left[
+Similarity between languages determines influence
+
+One language influences the L3 holistically 
+
+
+**Q1:** Does just 1 language, or do both languages affect L3A? 
+
+Only 1 language affects the L3 - closest typological match. 
+   
+**Q2:** Are bilinguals better at learning languages than monolinguals?
+
+No.
+]
+
+--
+
+.pull-right[
+## Evidence (Rothman, 2011)
+
+Similar adjective placement in two groups 
+
+L1 Italian-L2 English-L3 Spanish
+
+L1 English-L2 Spanish-L3 Brazilian Portuguese (BP)
+]
+
+---
+
+# Models
+
+.big[
+The **Linguistic Proximity Model** (Westergaard et al., 2017)
+]
+
+--
+
+.pull-left[
+Activation of **both languages** causes the L3 values to fall between L1 and L2 values.
+
+**Q1:** Does just 1 language, or do both languages affect L3A? 
+
+Both
+
+**Q2:** Are bilinguals better at learning languages than monolinguals?
+
+Maybe.
+]
+
+--
+
+.pull-right[
+## Evidence (Westergaard et al., 2017) 
+
+Word order in L3 English
+
+Norwegian-Russian bilinguals with L3 English
+
+L1 Norwegian L2 English 
+
+L1 Russian L2 English 
+
+Accuracy: 1st L1 Russian L2 English
+
+2nd Norwegian-Russian bilinguals 
+            
+3rd L1 Norwegian L2 English
+]
+
+---
+
+# VOT Study 
+
+.big[
+- I conducted a study to test how Spanish-English bilinguals pronounce French words at first exposure.  
+]
+
+--
+
+.big[
+- Specifically, they pronounced words beginning in /p/, /t/ or /k/ in all three languages.   
+
+- I measured Voice-onset time to compare productions between languages.
+]
+
+--
+
+.med[
+- Voice-onset time (VOT) is a phonetic measure of duration in milliseconds that distinguishes consonants (such as /p/ from /b/) in many of the world's languages 
+]
+
+--
+
+.med[
+- Cross-linguistic VOT
+ - **Spanish** and **French** - similar production of /ptk/
+ - **English** - longer VOT and aspiration of /ptk/
+]
+
+---
+
+# Methods 
+
+.pull-left[.big[
+- **RQ:** When Spanish-English bilinguals produce French words at first exposure, will their VOT productions be more L1 or L2 like?  
+]]
+
+--
+
+.pull-right[.big[
+- **Predictions:** It is possible that hybrid values reported in the literature are due to sampling error or phonological acquisition - it was predicted that **L3 VOT would be practically equivalent to L2 VOT.**
+]]
+
+---
+# Materials 
+
+.big[
+**VOT measurements**
+- French shadowing task 
+
+- English word reading task
+
+- Spanish word reading task 
+]
+---
+
+
+# Participants 
+
+.big[
+39 participants were **L1 Mexican Spanish**, **L2 English** late bilinguals
+
+18 Mexican Spanish monolinguals
+]
+
+
+
+# A Voice onset time study 
+
+.large[
+The study compared the pronunciation of **voiceless stop consonants** (p, t, k) produced Spanish speakers (bilingual and monolinguals) in French, Spanish and English (bilinguals only).
+]
+
+--
+
+.large[
+**Voice onset time** (VOT) is the acoustic correlate of these sounds and is measured in milliseconds. 
+]
+
+--
+
+.large[
+VOT varies cross-linguistically.
+]
+
+---
+
+count: false
+background-image: url(./images/vot.png)
+background-size: 80%
+
+---
+
+background-image: url(./images/sp_en_stops_color.png)
+background-size: contain
+
+.footnote[
+<sup>1</sup> Lozano-Argülles et al. (2020)
+]
+
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+# English > Spanish = French
+
+--
+
+### Spanish speakers should not have a problem producing French VOT
+
+---
+
+# Participants & Materials
+
+--
+
+.large[
+A total of 39 **L1 Mexican Spanish**, **L2 English** late bilingual speakers and 18 **Spanish monolingual** participants took part in the experiment.   
+]
+
+--
+
+.large[
+.pull-left[
+**Production tasks**
+- French Shadowing Task 
+
+- English Elicited Production Task
+
+- Spanish Elicited Production Task 
+]]
+
+--
+
+.large[
+.pull-right[
+**Stimuli**
+
+27 stop-iniital words per language (3 repetitions of 9 words)
+]]
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+## Results showed greater VOT for bilinguals compared to monolignuals 
+
+--
+
+### L3 VOT was also intermediate within subjects 
+
+---
+
+count: false
+background-image: url(./images/exp1_results.png)
+background-size: 80%
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+## The monolingual and bilingual groups did not produce Spanish differently.
+
+
+---
+
+count: false
+background-image: url(./images/sp_bt.png)
+background-size: 80%
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+## The monolingual and bilingual groups **did** produce French differently.
+
+---
+
+count: false
+background-image: url(./images/fr_bt.png)
+background-size: 80%
+
+---
+
+# Within-subjects for bilinguals
+
+.pull-left[
+.big[
+A within-subjects statistical model also provided evidence that the bilingual group **produced all 3 languages using distinct VOT.**
+]]
+
+--
+
+.tiny[.pull-right[
+```{r}
+tab_model(mod0)
+```
+]]
+
+
+<!--
+count: false
+background-image: url(./img/sp_bt.png)
+background-size: 80%
+
+
+count: false
+background-image: url(./img/fr_bt.png)
+background-size: 80%
+
+
+count: false
+background-image: url(./img/mon_fr_sp.png)
+background-size: 80%
+
+count: false
+background-image: url(./img/bil_fr_sp.png)
+background-size: 80%
+-->
+
+---
+
+# Discussion and Conclusions 
+
+.big[
+- Participants are primarily influenced by one of their source languages but to different degrees
+]
+
+--
+
+.big[
+ - L1 influence, L3 VOT ~ L1 values, 
+ - L2 influence, L3 VOT values fell between L1 and L2 values
+] 
+
+---
+
+# Discussion and Conclusions  
+
+.big[.pull-left[
+- Which model do these results support?
+
+- Are the conclusions different for the group level and the individual level? 
+
+- Have your answers to question 1 and question 2 changed? 
+]]
+
+--
+
+.big[.pull-right[
+**Q1:** Does just 1 language, or do both languages affect L3A? 
+   
+
+**Q2:** Are bilinguals better at learning languages than monolinguals?
+]]

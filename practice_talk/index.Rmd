@@ -1,0 +1,820 @@
+---
+title: "Individual differences must underlie L3 acquisition"
+subtitle: 'A job talk mentioning Lebron James'
+author  : "Kyle Parrish"
+date    : "</br>Winter 2024</br>Last update: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: [default, hygge, my-css.css, rutgers-fonts]
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+```{r, setup, include=FALSE}
+library("fontawesome")
+library("RefManageR")
+knitr::opts_chunk$set(
+  comment = '', fig.width = 6, fig.height = 6, message = FALSE, warning = FALSE, echo = FALSE
+)
+```
+
+```{r xaringan-themer, include=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  # primary_color = "#345865",
+  primary_color = "#B56B6F",
+  secondary_color = "#2c8475",
+  black_color = "#4242424",
+  white_color = "#FFF",
+  base_font_size = "25px",
+  # text_font_family = "Jost",
+  # text_font_url = "https://indestructibletype.com/fonts/Jost.css",
+  header_font_google = google_font("Times New Roman", "400", "700"),
+  header_font_weight = "400",
+  inverse_header_color = "#eaeaea",
+  title_slide_text_color = "black",
+  text_slide_number_color = "#9a9a9a",
+  text_bold_color = "#f79334",
+  code_inline_color = "#B56B6F",
+  code_highlight_color = "transparent",
+  link_color = "#2c8475",
+  table_row_even_background_color = lighten_color("#345865", 0.9),
+  extra_fonts = list(
+    google_font("Times New Roman", "400")
+  ),
+  colors = c(
+    green = "#31b09e",
+    "green-dark" = "#2c8475",
+    highlight = "#87f9bb",
+    purple = "#887ba3",
+    pink = "#B56B6F",
+    orange = "#f79334",
+    red = "#dc322f",
+    `blue-dark` = "#002b36",
+    `text-dark` = "#202020",
+    `text-darkish` = "#424242",
+    `text-mild` = "#606060",
+    `text-light` = "#9a9a9a",
+    `text-lightest` = "#eaeaea"
+  ),
+  extra_css = list(
+    ".remark-slide-content h3" = list(
+      "margin-bottom" = 0, 
+      "margin-top" = 0
+    ),
+    ".smallish, .smallish .remark-code-line" = list(`font-size` = "0.9em")
+  )
+)
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "share_again"))
+xaringanExtra::use_extra_styles()
+```
+
+
+```{r components, include=FALSE}
+slides_from_images <- function(
+  path,
+  regexp = NULL,
+  class = "hide-count",
+  background_size = "contain",
+  background_position = "top left"
+) {
+  if (isTRUE(getOption("slide_image_placeholder", FALSE))) {
+    return(glue::glue("Slides to be generated from [{path}]({path})"))
+  }
+  if (fs::is_dir(path)) {
+    imgs <- fs::dir_ls(path, regexp = regexp, type = "file", recurse = FALSE)
+  } else if (all(fs::is_file(path) && fs::file_exists(path))) {
+    imgs <- path
+  } else {
+    stop("path must be a directory or a vector of images")
+  }
+  imgs <- fs::path_rel(imgs, ".")
+  breaks <- rep("\n---\n", length(imgs))
+  breaks[length(breaks)] <- ""
+
+  txt <- glue::glue("
+  class: {class}
+  background-image: url('{imgs}')
+  background-size: {background_size}
+  background-position: {background_position}
+  {breaks}
+  ")
+
+  paste(txt, sep = "", collapse = "")
+}
+options("slide_image_placeholder" = FALSE)
+```
+
+
+```{r}
+library(readr)
+library(here)
+library(sjPlot)
+mod0 = read_rds(here("practice_talk", "data", "study1", "mod0.rds"))
+```
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## Successful language learning is a **key to building social awareness**.
+
+
+<!-- of the inalienable worth of each individual and appreciation of ethnic and cultural diversity -->
+
+--
+
+### But it is difficult... especially in adulthood.
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## **Ultimate attainment varies** widely, particularly in phonetics.  
+
+--
+
+### Some learners reach native-like attaimment, while others reach high levels of profciency with a high degree of accentedness. 
+
+
+.footnote[Bongaerts et al., 1997; Moyer, 1999; Schmid et al., 2014]
+
+---
+
+# Big questions in late-learned language acquisition
+
+--
+
+.large[
+.pull-left[
+How and why this is the case? 
+
+Can we **predict** a person's ultimate attainment in a new language?
+]]
+
+--
+
+.large[
+.pull-right[
+<br>
+<br>
+Can we **intervene** in the process and optimize language learning ability? 
+]]
+
+---
+
+# The assumptions of the late learning of languages
+
+--
+
+.large[
+In L2 learning, the phonological inventory of **the L1 predicts** ease or difficulty of the learning of specific L2 sounds. 
+]
+
+<!-- consider best quote here -->
+--
+
+.large[
+More recently, attention has turned to multilingual language learners: Is L3 learning **just another case of L2 learning?** 
+]
+
+--
+
+> Best (2007) - "It totally is, bro." 
+
+
+---
+
+# Evidence suggests otherwise 
+
+--
+
+.large[
+**L2 has an influence on the production** of the L3 in... 
+]
+
+--
+
+.large[
+
+1. Global Accent (Hammarberg and Hammarberg, 1993) 
+2. Voice Onset Time (Llama et al., 2010; Wrembel, 2010)
+3. Lexical production (Tremblay, 2007)
+4. Vowel production (Kamiyama, 2007; Gut, 2010)
+]
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## All previous linguistic knowledge can play a role in L3 acquisition
+
+--
+
+.large[
+... but we disagree on how. 
+]
+
+---
+
+# Models of Third Language Acquisition
+
+--
+
+.large[
+.pull-left[
+The **Typological Primacy Model** (Rothman, 2015) predicts that whole language transfer occurs from one of two source languages **during the initial stages**.
+]]
+
+--
+
+.large[
+.pull-right[
+The **Linguistic Proximity Model** (Westergaard et al., 2015) predicts that both languages can transfer.
+]]
+
+---
+
+# Evidence for the TPM 
+
+.large[
+Comparing task performance in the L3, **no evidence of a difference** between two groups is seen as evidence of single-language transfer. 
+]
+
+--
+
+.pull-left[
+**L3 Brazilian Portuguese, Spanish-English bilinguals**
+
+1. Rothman (2010, 2011)
+2. Cabrelli Amaro, Felipe Amaro, & Rothman (2015)
+3. Giancaspro, Halloran, & Iverson (2015)
+4. Parma (2017)
+5. Ionin, Grolla, Santos, & Montrul (2015)
+6. Iverson (2009)
+7. Santos (2013)
+]
+
+--
+
+.pull-right[
+**L3 Spanish, Romance-English bilingual**
+
+8. Foote (2009)
+9. Borg (2013)
+10. Bruhn de Garavito & Perpiñán (2014)
+]
+
+---
+
+# Evidence for the LPM 
+
+--
+
+.large[
+Comparing task performance in the L3 to an L2, or within L3 subjects, the **L3 being intermediate** of the L1 and L2 is seen as evidence for the LPM. 
+]
+
+--
+
+**Intermediate values in production**
+
+1. Wrembel (2014)
+2. Wrembel (2011)
+3. Wunder (2010)
+4. Blank & Zimmer (2009)
+5. Llama & Cordoso (2018)
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## With conflicting evidence, it is unclear whether intermediate L3 production is **present at the beginning** of learning or develops later on.  
+
+---
+
+count: false
+background-image: url(./img/map.jpeg)
+background-size: 80%
+
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## **Study 1**: The production of L3 French words at first exposure Spanish-English bilinguals 
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+### **Questions**: 
+
+--
+
+### RQ1: In the very beginning, are L2 and L3 learning different? 
+
+--
+
+### RQ2: In the very beginning, is the L3 like the L1, L2, or between them?
+
+---
+
+# A Voice onset time study 
+
+.large[
+The study compared the pronunciation of **voiceless stop consonants** (p, t, k) produced Spanish speakers (bilingual and monolinguals) in French, Spanish and English (bilinguals only).
+]
+
+--
+
+.large[
+**Voice onset time** (VOT) is the acoustic correlate of these sounds and is measured in milliseconds. 
+]
+
+--
+
+.large[
+VOT varies cross-linguistically.
+]
+
+---
+
+count: false
+background-image: url(./img/vot.png)
+background-size: 80%
+
+---
+
+background-image: url(./img/sp_en_stops_color.png)
+background-size: contain
+
+.footnote[
+<sup>1</sup> Lozano-Argülles et al. (2020)
+]
+
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+# English > Spanish = French
+
+--
+
+### Spanish speakers should not have a problem producing French VOT
+
+---
+
+# Participants & Materials
+
+--
+
+.large[
+A total of 39 **L1 Mexican Spanish**, **L2 English** late bilingual speakers and 18 **Spanish monolingual** participants took part in the experiment.   
+]
+
+--
+
+.large[
+.pull-left[
+**Production tasks**
+- French Shadowing Task 
+
+- English Elicited Production Task
+
+- Spanish Elicited Production Task 
+]]
+
+--
+
+.large[
+.pull-right[
+**Stimuli**
+
+27 stop-iniital words per language (3 repetitions of 9 words)
+]]
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+## Results showed greater VOT for bilinguals compared to monolignuals 
+
+--
+
+### L3 VOT was also intermediate within subjects 
+
+---
+
+count: false
+background-image: url(./img/exp1_results.png)
+background-size: 80%
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+## The monolingual and bilingual groups did not produce Spanish differently.
+
+
+---
+
+count: false
+background-image: url(./img/sp_bt.png)
+background-size: 80%
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+## The monolingual and bilingual groups **did** produce French differently.
+
+---
+
+count: false
+background-image: url(./img/fr_bt.png)
+background-size: 80%
+
+---
+
+# Within-subjects for bilinguals
+
+.pull-left[
+.big[
+A within-subjects statistical model also provided evidence that the bilingual group **produced all 3 languages using distinct VOT.**
+]]
+
+--
+
+.tiny[.pull-right[
+```{r}
+tab_model(mod0)
+```
+]]
+
+
+<!--
+count: false
+background-image: url(./img/sp_bt.png)
+background-size: 80%
+
+
+count: false
+background-image: url(./img/fr_bt.png)
+background-size: 80%
+
+
+count: false
+background-image: url(./img/mon_fr_sp.png)
+background-size: 80%
+
+count: false
+background-image: url(./img/bil_fr_sp.png)
+background-size: 80%
+-->
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## This suggests that L3 learners are impacted by both the L1 and L2.
+
+--
+
+### Anywy, let's talk about basketball.
+
+---
+
+count: false
+background-image: url(./img/lebron.png)
+background-size: 80%
+
+---
+
+# Lebron James 
+
+.large[
+In his career, he has averaged 27 points, 7 assists and 7 rebounds per game.
+]
+
+--
+
+.large[
+He has **never actually recorded a game with this stat**.
+]
+
+--
+
+.large[
+The mean reflects the central tendency of the whole data set, but it **does not reflect any specific performance**. 
+]
+
+--
+
+.large[
+In his case, we know that the same underlying process generated each data point - Lebron is the same person. 
+]
+
+---
+
+# The process underlying data generation 
+
+--
+
+.large[
+In L3 acquisition, we **do not know the underlying process(es)** that generates the data. 
+]
+
+--
+
+.large[
+<br>
+<br>
+<br>
+At least two possibilities exist: 
+
+  .blue[a]. The process is similar for all people with respect to direction and relative magnitude.
+
+  .red[b]. The process is individual, with no common direction or relative magnitude. 
+]
+
+--
+
+
+<br>
+<br>
+<br>
+<br>
+In other words, the data we observe may be better explained by **distinct underlying data-generating processes determined by individual factors**, rather than a universal truth about L3 acquisition. 
+
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## A closer look at the individual performances from study 1 suggests **distinct processes underlie the generation of the data**.
+
+---
+
+count: false
+background-image: url(./img/L1_sub.png)
+background-size: 80%
+
+.footnote[Participants who had L1-like productions in the L3]
+---
+
+count: false
+background-image: url(./img/L2_sub.png)
+background-size: 80%
+
+.footnote[Participants who had L2-like productions in the L3]
+
+
+<!-- The point is that the mean, made up of many individual data points, has the potential not to be for making determinations about the data that calculated it.
+
+The analogy refers to group models in linguistic research - we detect an effect on the basis of many individuals - and make recs based on the effect that is analogous to the mean.
+
+But, especially as the variation of individual effects increases, the validity of this effect to make impactful and informed decisions on the basis of experimental work decreases  
+
+My main argument is that, b/c we make decisions that are based upon groups of individuals without always verifying that the treatment/effect is present in all of them, that many studies cannot conclusively say that all participants exhibit a behavior said to be true. -->
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## These subsets represent best guesses given the small amount of data that we have: there are isues with **statistical power** that obscure our evidence.
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+
+## The false negative rate is higher when the sample is lower.
+
+--
+
+### With only 9 data points, we run a rather high risk of a false negative finding at the individual level.
+
+.footnote[We risk concluding no effect exists that does in reality.]
+
+---
+
+
+count: false
+background-image: url(./img/small_power_curve.png)
+background-size: 80%
+
+---
+
+
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## **Study 2**: A simulation of VOT in L3 learners 
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+### **Questions**: 
+
+--
+
+### RQ1: If the underlying truth is that data generation has unique underlying processes, **how many observations per participant** per language do we need?
+
+--
+
+### RQ2: If we consider participants who are learning the same language as belonging to the same experimental group, how reliable is our group level estimate for determining individual performance?
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+### **In other words**: What if both the TPM and the LPM are right? And it varies by individual?
+
+--
+
+Three unique data generation processes:
+
+When the L2 VOT > L1 VOT (as it would be in Spanish L1 English L2)
+
+The L3 is L1-like
+The L3 is L2-like
+The L3 is a small effect size below the L2.
+
+---
+
+# A simulation study
+
+.large[
+The study simulated experimental data of the pronunciation of a **voiceless stop consonant** (p) produced by trilingual speakers of L1 Spanish, L2 English and L3 French
+]
+
+--
+
+.large[
+Spanish was simulated with the lowest VOT (mean = 10, sd = 10)
+English was simulated with the higher VOT (mean = 70, sd = 20)
+]
+
+--
+
+.large[
+French was simulated with one of three processes (33% each):
+
+a. Equal to Spanish
+b. Equal to English
+c. 15ms less than English (mean = 55, sd = 20)
+]
+
+---
+
+# A simulation study
+
+.large[
+The first goal of the simulation was to determine how much data is needed to accurately categorize each of the participants at least 80% of the times.
+]
+
+--
+
+.large[
+The second goal of the simulation was to determine how often, and with how much data, a group model featuring all 3 participant types yielded an intermediate effect in the group model,
+]
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+### Around 60 observations are necessary to reach 80% accuracy in categorizing the participants from the data alone. 
+
+---
+
+count: false
+background-image: url(./img/cat_sim.png)
+background-size: 80%
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+### Beyond 400 total observations per language, the model is intermediate 80% of the time. 
+
+---
+
+
+count: false
+background-image: url(./img/int_models.png)
+background-size: 80%
+
+
+---
+
+# Take aways 
+
+
+.large[
+Much more data are needed on the individual level if there are distinct underlying data-generating processes.
+]
+
+--
+
+.large[
+Rather than focusing on large groups, zooming in on the individual in a series of case studies would shed light on whether this may be the case.
+]
+
+--
+
+.large[
+As the total data-set increases in size, the probability of an intermediate group effect increases - even though it is only true for 1/3 of participants.
+]
+
+--
+
+.large[
+This result biases interpretations and makes interventions on the basis of the data less equitable as the variation increases.
+]
+
+---
+
+# In the works 
+
+.large[
+Propose a service learning class that helps the community and generates interesting data.
+
+Longitudinal design examining the impact of service learning on language proficiency.
+  - Meaningful language use in the advanced development of L2 and L3 phonetic categories. 
+  - Good for Creighton because of a diverse community and affluent student body.
+  
+Talk about specific funding.
+]
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+### Questions, comments and concerns.  
+

@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Una introducción al poder estadístico</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Kyle Parrish" />
+    <script src="libs/header-attrs-2.22/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/hygge.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/rutgers-fonts.css" rel="stylesheet" />
+    <script src="libs/clipboard-2.0.6/clipboard.min.js"></script>
+    <link href="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.css" rel="stylesheet" />
+    <script src="libs/xaringanExtra-clipboard-0.2.6/xaringanExtra-clipboard.js"></script>
+    <script>window.xaringanExtraClipboard(null, {"button":"<i class=\"fa fa-clipboard\"><\/i>","success":"<i class=\"fa fa-check\" style=\"color: #90BE6D\"><\/i>","error":"Press Ctrl+C to Copy"})</script>
+    <link href="libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+    <link href="libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="my-css.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+.title[
+# Una introducción al poder estadístico
+]
+.subtitle[
+## Graduate Teaching Demonstration
+]
+.author[
+### Kyle Parrish
+]
+.date[
+### </br>January 2025</br>Last update: 2025-01-26
+]
+
+---
+
+
+
+
+
+
+
+# Antes de empezar
+
+.pull-left[
+.full-width[
+.content-box-grey[
+**Tiempo: 8 minutos**
+
+En grupos de 2 o 3, respondan a las siguientes preguntas: 
+
+¿Qué son las **estadísticas inferenciales**?
+
+¿Por qué las necesitamos? 
+
+¿Cuál es su grado de precisión? 
+]]]
+
+---
+
+# ¿Qué son las **estadísticas inferenciales**?
+
+.large[
+.pull-left[
+Las **estadísticas inferenciales** son pruebas que utilizamos para hacer inferencias sobre una población de la que no podemos reunir todos los datos.
+]]
+
+&lt;img src="./img/sampling.png"
+     width="300" height="327px"
+     style="position:absolute; left:800px; top:150px;"&gt;
+
+---
+
+# ¿Por qué las necesitamos? 
+
+.large[
+.pull-left[
+Necesitamos pruebas estadísticas inferenciales para argumentar que las diferencias entre dos muestras no se deben al azar.
+]]
+
+&lt;img src="./img/sampling.png"
+     width="300px" height="327px"
+     style="position:absolute; left:800px; top:150px;"&gt;
+
+
+---
+
+# ¿Cuál es su grado de precisión? 
+
+.large[
+.pull-left[
+La precisión específica depende del nivel de significación: en muchos campos, el 5% de los resultados son falsos positivos.
+]]
+
+--
+
+.large[
+.pull-right[
+Podemos demostrarlo mediante una simulación en una lengua de programación como R.
+]]
+
+---
+
+class: title-slide-section, middle
+
+## Las estadísticas inferenciales también pueden tener resultados **falsos negativos**. 
+
+
+---
+
+
+# La baja poder estadístico
+
+--
+
+.large[
+.pull-left[
+El poder o la potencia estadística se refiere a la .blue[probabilidad de detectar un efecto] en un experimento dada una determinada cantidad de datos.
+
+**La baja potencia tiene importantes consecuencias**
+]]
+
+--
+
+.large[
+.pull-left[
+**Falsos negativos**: La baja potencia conlleva una gran cantidad de falsos negativos. 
+
+**The Winner's Curse**: Los estudios de baja potencia que sí encuentran un efecto tienen (casi) la garantía de sobreestimarlo.
+]]
+
+---
+
+class: title-slide-section, middle
+
+## Parte 1:  Una menor potencia provoca una mayor proporción de resultados **falsos negativos**. 
+
+---
+
+background-image: url(./img/fp.png)
+background-size: contain
+
+---
+
+
+background-image: url(./img/slide1.png)
+background-size: contain
+
+---
+
+background-image: url(./img/slide2.png)
+background-size: contain
+
+---
+
+
+background-image: url(./img/slide3.png)
+background-size: contain
+
+---
+
+background-image: url(./img/slide4.png)
+background-size: contain
+
+---
+
+background-image: url(./img/slide5.png)
+background-size: contain
+
+---
+
+background-image: url(./img/slide6.png)
+background-size: contain
+
+---
+
+background-image: url(./img/slide7.png)
+background-size: contain
+
+---
+
+background-image: url(./img/slide8.png)
+background-size: contain
+
+---
+
+background-image: url(./img/slide9.png)
+background-size: contain
+
+---
+
+background-image: url(./img/slide10.png)
+background-size: contain
+
+---
+
+class: title-slide-section, middle
+
+### Creo que los resultados de los exámenes de Texas Tech son **10 puntos más altos** en promedio.
+
+--
+
+### ¿Cuántos exámenes necesitamos «obtener» de cada lugar?
+
+---
+
+# ¡Vamos a simular el robo!
+
+--
+.large[
+**Simulamos la población entera**
+
+Supogamos que hay **500** examenes en cada lugar.
+
+Nota media en Texas Tech = .red[75] puntos.
+
+Nota media en UT Austin = .orange[65] puntos.
+]
+
+--
+
+
+```r
+# Load libraries 
+library(tidyverse)
+# Set the seed so that we can reproduce the simulation exactly
+set.seed(920)
+# Set the level of variation 
+sd_for_all = 20
+
+## Simulating Texas Tech math scores
+tt_math = data.frame(scores = rnorm(n = 500, mean = 75, sd = sd_for_all)) %&gt;% 
+  mutate(source = "texas_tech")
+
+## Simulating UT Austin math scores
+ut_math = data.frame(scores = rnorm(n = 500, mean = 65, sd = sd_for_all)) %&gt;% 
+  mutate(source = "ut_austin")
+```
+
+---
+
+# ¡Vamos a simular el robo!
+
+--
+.large[
+Ahora, simulamos tomar una **muestra** de esta población.
+
+Cuando tomamos una muestra, **extraemos aleatoriamente** puntos de datos de una población.
+
+En este ejemplo, extraemos 10 filas de cada una de las poblaciones de 500.
+]
+--
+
+
+```r
+# Specify here what your guess is - how many tests do we need?
+guess = 10
+# Set the seed so that we can reproduce the simulation exactly
+set.seed(4)
+# Extract a number of rows from the underlying distribution equal to `guess`
+tt_sample = sample_n(tt_math, size = guess)
+ut_sample = sample_n(ut_math, size = guess)
+# Calculate the mean difference between the extracted samples - remember the true difference is 10
+mean(tt_sample$scores)-mean(ut_sample$scores)
+```
+
+```
+## [1] 9.048622
+```
+
+--
+
+La diferencia, 9.05, es menor que la verdadera diferencia de 10 puntos.
+
+---
+
+# ¡Vamos a simular el robo!
+
+--
+.large[
+Ahora cabe preguntarse: ¿es significativa esta diferencia o se debe simplemente al azar?
+]
+
+--
+
+Para responder, utilizaremos una .blue[prueba t] para decidir. 
+
+Esta prueba analiza si podemos concluir que existen diferencias entre dos conjuntos de datos.
+
+--
+
+**La regla de decisión usando el .blue[valor p]**
+
+Si .green[p &lt; .05], decimos que hay una .green[diferencia significativa].
+
+Si .blue[p &gt; .05], decimos que el resultado es .blue[no significativo].
+
+---
+
+# ¡Vamos a simular el robo!
+
+.large[
+Realicemos la prueba t en R.
+]
+
+--
+
+
+```r
+t.test(tt_sample$scores, ut_sample$scores)
+```
+
+```
+## 
+## 	Welch Two Sample t-test
+## 
+## data:  tt_sample$scores and ut_sample$scores
+## t = 1.8224, df = 17.065, p-value = 0.08596
+## alternative hypothesis: true difference in means is not equal to 0
+## 95 percent confidence interval:
+##  -1.423985 19.521229
+## sample estimates:
+## mean of x mean of y 
+##  73.61230  64.56368
+```
+
+--
+
+El valor p 0.09. **¿Qué concluimos??**
+
+--
+
+No encontramos **ninguna prueba** de que Texas Tech sea mejor en Matemáticas que UT Austin.
+
+--
+
+Pero en realidad hay una diferencia, ¡simplemente no teníamos datos suficientes para encontrarla!
+
+--
+
+Este resultado se llama un hallazgo **falso negativo** (o error de tipo II): no detectamos una diferencia que existe en la realidad. 
+
+---
+
+## ¿Y si hemos tenido mala suerte? **El error de muestreo** podría ser el culpable.
+
+&lt;iframe src="https://kparrish92.shinyapps.io/pa_demo/?showcase=0" width="100%" height="600px" data-external="1"&gt;&lt;/iframe&gt;
+
+---
+
+class: title-slide-section, middle
+
+### Si repetimos el muestreo aleatorio **100 veces**, obtendríamos una diferencia significativa sólo el **11%** de las veces.
+
+--
+
+### Por lo tanto, decimos que la **potencia** de la muestra de tamaño 10 en este contexto es de 0,11.
+
+--
+
+### Queremos que sea **0,80**
+
+---
+
+# ¿Y si aumentamos el tamaño de la muestra?
+
+
+
+Podemos ver que la probabilidad de encontrar nuestro efecto aumenta en función del tamaño de la muestra.
+
+### La potencia del tamaño de la muestra **20** es .red[0.269]
+
+--
+
+### La potencia del tamaño de la muestra **30** es .red[0.419].
+
+--
+
+### La potencia del tamaño de la muestra **40** es .red[0.507].
+
+--
+
+### La potencia del tamaño de la muestra **50** es .red[0.603].
+
+--
+
+### La potencia del tamaño de la muestra **60** es .red[0.718].
+
+--
+
+### La potencia del tamaño de la muestra **70** es .red[0.765].
+
+--
+
+### La potencia del tamaño de la muestra **80** es .red[0.832].
+
+---
+
+class: title-slide-section, middle
+
+## La respuesta: Necesitamos **80 examenes** en total de cada escuela para demostrar que nuestro amigo no tiene razón.
+
+---
+
+background-image: url(./img/slide7.png)
+background-size: contain
+
+---
+class: title-slide-section, middle
+## ¿Y si **tenemos suerte** y encontramos un efecto en un estudio con poca potencia?
+
+---
+
+background-image: url(./img/golden_ticket.jpg)
+background-size: contain
+
+
+---
+
+class: title-slide-section, middle
+
+## Parte 2: The winner's curse: los estudios de baja potencia inflan los efectos reales. 
+
+--
+
+#### Volvamos al Shiny App
+
+--
+
+Por favor, escriba las diferencias de los promedios que encontramos cuando las muestras aleatorias son significativamente diferentes.
+
+--
+
+Vemos que estas diferencias son con mucha frecuencia mayores que la diferencia real del 10.
+---
+
+background-image: url(./img/slide7.png)
+background-size: contain
+
+---
+
+# The Winner's Curse: un ejemplo práctico.
+
+.large[
+Mi amigo de la UT quiere mejorar los resultados de UT en matemáticas y alcanzar a Texas Tech.
+]
+
+--
+
+.large[
+La Universidad está dispuesta a invertir **10.000 $ por punto de nota** que separe a las dos escuelas - 100k sería la inversión correcta.
+]
+
+---
+
+# The Winner's Curse: un ejemplo práctico.
+
+Si nuestra potencia fue de **0,4** y encontramos un resultado significativo la diferencia media es de **13,5 puntos** 
+
+--
+
+Gastaríamos un 35% más de recursos en la intervención que realmente necesario (135.000 dólares frente a 100.000).
+
+--
+
+
+```r
+i = 1000
+loop_df = matrix(nrow = i, ncol = 2)
+  for(thisRun in 1:i){
+    sample_1 = tt_math %&gt;% sample_n(30)
+    sample_2 = ut_math %&gt;% sample_n(30)
+    t_test = t.test(sample_1$scores,sample_2$scores)
+    loop_df[thisRun, 1] = t_test$p.value
+    loop_df[thisRun, 2] = mean(sample_1$scores)-mean(sample_2$scores)
+  }
+results = loop_df %&gt;% as.data.frame() %&gt;% 
+  rename("p_value" = "V1") %&gt;%  
+  rename("mean_difference" = "V2") %&gt;% 
+  filter(p_value &lt; .05)
+nrow(results)/i # power
+```
+
+```
+## [1] 0.402
+```
+
+```r
+mean(results$mean_difference) # mean effect size
+```
+
+```
+## [1] 13.53339
+```
+
+---
+
+class: title-slide-section, middle
+
+# Parte 3: ¿Qué hacemos?
+
+---
+
+# Análisis de potencia
+
+.large[
+La potencia consiste en detectar un efecto en un cierto **grado de variación.**
+]
+
+--
+
+.large[
+En nuestro ejemplo, no he mencionado que la desviación típica fue de 20.
+]
+
+--
+
+.large[
+**En grupos**: Dentro de su interés de investigación, ¿cuál es un ejemplo de desviación estándar?
+
+Parte 1: Busca un artículo y encuentra una desviación estándar
+
+Parte 2: Multiplica la desviación típica por 0,4, 0,7 y 1.
+
+¿Alguno de estos valores es demasiado pequeño para suponer una diferencia en la realidad?
+]
+
+---
+
+# Análisis de potencia
+
+.large[
+.4, .7 y 1 son efectos pequeños, medianos y grandes en la investigación sobre L2, pero no se aplican a todos los tipos de datos por igual. 
+]
+
+--
+
+.large[
+Requieren 107, 35 y 17 por grupo en cada caso.
+]
+
+--
+
+.large[
+Si el «pequeño» efecto no supone una diferencia práctica, no se necesitan tantos datos.
+]
+
+---
+# Conclusión 
+
+.large[
+La potencia estadística es una cuestión importante en la investigación experimental.
+]
+
+.large[
+Una potencia estadística baja aumenta la probabilidad de obtener resultados **falsos negativos**.
+
+Incluso cuando los estudios de baja potencia encuentran un efecto, éste está **inflado**.
+]
+
+--
+
+.large[
+Podemos reducir los efectos negativos de la baja potencia determinando cuál es el efecto  más pequeño que es importante según teoría.
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

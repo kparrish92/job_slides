@@ -1,0 +1,209 @@
+---
+title: "My approach to world language lessons: being a bridge"
+output: pdf_document
+date: "2024-11-13"
+---
+
+```{r, setup, include=FALSE}
+library("fontawesome")
+library("RefManageR")
+library(here)
+knitr::opts_chunk$set(
+  comment = '', fig.width = 6, fig.height = 6, message = FALSE, warning = FALSE, echo = FALSE
+)
+```
+
+
+## My goal is to act as a **bridge** for students.
+
+
+### I aim to influence and encourage students, and I connect them to the next steps while building **language proficiency**, **cultural competence**, and **general skills** that will serve them beyond the classroom. 
+
+
+---
+
+
+## My Spanish lessons follow ACTFL guiding principles to focus meaning and communicative activities.
+
+
+---
+
+## Within these meaning-driven language lessons, I integrate the **5 C's of Language Education**.
+
+--
+
+### **Communication** in more than one language for a variety of situations.
+
+--
+
+### Creating **cultural** competence.
+
+--
+
+### Making **connections** with other disciplines.
+
+--
+
+### Making **comparisons** between cultures and languages.
+
+--
+
+### Engaging **communities** at home and abroad.
+
+
+---
+
+# A practical example: Backward design structure
+
+--
+
+### Identify desired results... 
+
+--
+
+### THEN determine acceptable evidence...
+
+--
+
+### THEN plan learning experiences and instruction. 
+
+---
+
+## We want to learn **-ar verb conjugations** in the present tense.
+
+--
+
+Acceptable evidence: Given an infinitive, the student can **produce a sentence** using the correct form of a verb and **generalize** this ability to novel words.
+
+
+---
+
+```{r}
+knitr::include_graphics(here("bccc_presentation", "mg", "familiar_cook.png"))
+```
+
+
+
+[*Communication: interpersonal*
+
+---
+
+
+```{r}
+knitr::include_graphics(here("bccc_presentation", "mg", "generalize_cook.png"))
+```
+
+
+
+.footnote[*Communication: interpersonal*]
+
+---
+
+
+```{r}
+knitr::include_graphics(here("bccc_presentation", "mg", "lyster.png"))
+```
+
+---
+
+# An example: Let's cook! 
+
+--
+
+### 1. Introduce authentic cultural material (a recipe in Spanish).
+
+--
+
+### 2. Do an interpretive activity.
+
+--
+
+### 3. Zoom in on the grammatical aspects of the material.
+
+--
+
+### 4. Do guided practice.
+
+--
+
+### 5. Check for understanding with the acceptable evidence activity. 
+
+
+.footnote[*Communication: interpersonal, interpretive; connections; culture; comparisons*]
+
+---
+
+```{r}
+knitr::include_graphics(here("bccc_presentation", "mg", "ingredients.png"))
+```
+
+
+
+---
+
+```{r}
+knitr::include_graphics(here("bccc_presentation", "mg", "order.png"))
+```
+
+
+.footnote[*Communication: interpersonal*]
+
+---
+
+
+```{r}
+knitr::include_graphics(here("bccc_presentation", "mg", "infinitive_activity.png"))
+```
+
+count: false
+background-image: url(./mg/infinitive_activity.png)
+background-size: 50%
+
+.footnote[*Comparisons*]
+
+---
+
+
+```{r}
+knitr::include_graphics(here("bccc_presentation", "mg", "order.png"))
+```
+
+# General Lesson Structure
+
+*Based on the ACTFL Contemporary Lesson Plan Template (2021)*
+
+**50 minutes**
+
+
+**Warm up**: A brief review of the content of the previous class. (10 minutes)
+
+**New Thematic Introduction**: Demonstration and walk through of the topic of the day. (10 minutes)
+
+**Guided and communicative Practice**: Group or individual guided practice with feedback.
+(20 minutes)
+
+**Cool down**: A review of the relevant topic and reiteration of the major takeaways. (10 minutes) 
+
+
+---
+
+# Conclusion
+
+
+### I am eager to act as not just an instructor, but a **bridge for students** to connect them to new resources and paths forward.
+
+--
+
+### I want to **give back to my home state**: I have been privileged and gained many unique experiences in my work.
+
+--
+
+### My research specialized in second language acquisition and I make **research-based innovations** in my teaching. 
+
+--
+
+### If desired, I can supervise or involve students in **undergraduate research**.
+
+
+---
+

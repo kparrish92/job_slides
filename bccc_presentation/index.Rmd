@@ -1,6 +1,6 @@
 ---
-title: "My approach to world language lessons: being a bridge"
-subtitle: 'A ten minute overview'
+title: "A creative and compelling title"
+subtitle: 'Job Talk'
 author  : "Kyle Parrish"
 date    : "</br>Winter 2024</br>Last update: `r Sys.Date()`"
 output:
