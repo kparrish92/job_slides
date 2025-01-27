@@ -30,7 +30,7 @@ class: center, middle, inverse, title-slide
 ### Kyle Parrish
 ]
 .date[
-### </br>January 2025</br>Last update: 2025-01-26
+### </br>January 2025</br>Last update: 2025-01-27
 ]
 
 ---
@@ -39,6 +39,221 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
+class: title-slide-section, middle
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+## La **ciencia de datos** (data science) es una disciplina fascinante que te permite convertir datos sin procesar (raw data) en entendimiento, comprensión y conocimiento.
+
+---
+
+# La clase de hoy
+
+.large[
+Aprenderemos el lenguaje de programación **R** 
+]
+
+--
+
+.large[
+El objetivo de hoy es ofrecer una **visión general** de qué es R y cómo puede ser útil.
+
+Codificaremos juntos: no obstante, aquí tienes enlaces si quieres descargar más.
+]
+
+--
+
+.large[
+https://posit.co/downloads/ 
+
+https://posit.cloud
+]
+
+--
+
+.large[
+El contenido de esta lección viene del libro: https://es.r4ds.hadley.nz/ 
+]
+
+---
+
+# Introducción 
+
+.large[
+.pull-left[
+La exploración de datos es el arte de .blue[mirar tus datos], .green[generar hipótesis rápidamente], .orange[testearlas].
+]]
+
+--
+
+.pull-right[
+&lt;img src="../ug_teaching/images/intro.png" width="1323" /&gt;
+]
+
+
+
+
+---
+class: title-slide-section, middle
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+&lt;br&gt;
+## ¿Qué se puede aprender?
+
+- **Importar**: Cargar datos desde archivos, bases de datos o APIs a R.
+- **Ordenar**: Estructurar los datos de manera que cada columna sea una variable y cada fila una observación.
+- **Transformar**: Filtrar observaciones, crear nuevas variables y calcular estadísticas resumidas.
+- **Visualizar**: Crear gráficos que revelen patrones y tendencias en los datos.
+- **Modelar**: Construir modelos matemáticos o computacionales para responder preguntas específicas.
+
+Estas herramientas te proporcionarán una base sólida para enfrentar una variedad de desafíos en la ciencia de datos utilizando R.
+
+---
+
+# El tidyverse
+
+.large[
+- El **tidyverse** es un conjunto de paquetes en R diseñados para trabajar juntos de manera armoniosa.
+  
+- Cada paquete aborda una parte específica del flujo de trabajo de análisis de datos:
+  - **dplyr**: Manipulación de datos.
+  - **ggplot2**: Visualización de datos.
+  - **tidyr**: Ordenamiento de datos.
+  - **readr**: Importación de datos.
+  - **purrr**: Programación funcional.
+  - **tibble**: Estructura de datos moderna.
+]
+
+---
+
+# ¿Qué es un paquete?
+
+.large[
+- En R, un **paquete** es una colección de funciones, datos, y documentación agrupados en una biblioteca.
+  
+- Los paquetes deben instalarse y luego cargarse antes de usarlos:
+]
+
+```{r{}
+  # Instalar el paquete tidyverse
+  install.packages("tidyverse")
+  
+  # Cargar el paquete tidyverse
+  library(tidyverse)
+```          
+
+---
+
+# Funciones en R
+
+.large[
+.pull-left[
+Una **función** es un bloque de código diseñado para realizar una tarea específica.
+
+Las funciones tienen .blue[sintaxis]:
+
+El nombre de la función va antes paréntesis ().
+
+Dentro de los paréntesis van los .red[argumentos].
+
+Los argumentos controlan cómo se comporta la función. 
+]]
+
+--
+
+
+```r
+# Una función básica: calcular la media
+valores &lt;- c(10, 20, 30, 40, 50)
+
+# La función mean toma un argumento principal (x)
+mean(valores)
+```
+
+```
+## [1] 30
+```
+
+---
+
+# Ejemplo: Una función con más de un argumento
+
+.large[
+Veamos un ejemplo usando las funciones `mean()` y `rnorm()`, donde esta última tiene **tres argumentos**:
+]
+
+
+```r
+# rnorm genera números aleatorios con distribución normal
+valores &lt;- rnorm(n = 100, mean = 5, sd = 2)
+
+# mean calcula la media de esos valores
+resultado &lt;- mean(valores)
+
+resultado # Devuelve la media cercana a 5
+```
+
+```
+## [1] 4.791447
+```
+
+---
+
+# ¿Qué hace `rnorm()`?  
+
+.large[**La función `rnorm()` genera números aleatorios que siguen una distribución normal.**]  
+
+### Argumentos principales:  
+- `n`: Cantidad de números a generar.  
+- `mean`: Valor medio o promedio de la distribución.  
+- `sd`: Desviación estándar que determina la variabilidad.  
+
+### Ejemplo:  
+
+```r
+valores &lt;- rnorm(n = 5, mean = 2, sd = 1)
+valores
+```
+
+```
+## [1] 3.136846 2.274719 1.812512 2.150358 1.361704
+```
+
+---
+
+# Guardar resultados en objetos  
+
+.large[En R, puedes aplicar una función a datos y guardar el resultado en un objeto para reutilizarlo.]  
+
+### Ejemplo básico:  
+
+```r
+# Genera 10 números aleatorios con media 5 y desviación estándar 2
+valores &lt;- rnorm(n = 10, mean = 5, sd = 2)
+
+# Calcula la media y guarda el resultado en un objeto
+media_valores &lt;- mean(valores)
+
+# Imprime el resultado
+media_valores
+```
+
+```
+## [1] 4.722174
+```
+
+--
+
+# Preguntas  
+
+1. Cómo se genera 100 números aleatorios con media 15 y desviación estándar 2?
+
+2. Cómo guardamos el resultados a un objeto que se llama "chicken"?
+---
 
 
 # Antes de empezar

@@ -1,6 +1,6 @@
 ---
 title: "Introducción a R para ciencia de datos"
-subtitle: 'Undergraduate lesson'
+subtitle: 'Teaching Demonstration'
 author  : "Kyle Parrish"
 date    : "Texas Tech</br>January 2025</br>Last update: `r Sys.Date()`"
 output:
@@ -224,12 +224,7 @@ Estas herramientas te proporcionarán una base sólida para enfrentar una varied
 .large[
 .pull-left[
 Una **función** es un bloque de código diseñado para realizar una tarea específica.
-]]
 
---
-
-.large[
-.pull-right[
 Las funciones tienen .blue[sintaxis]:
 
 El nombre de la función va antes paréntesis ().
@@ -237,7 +232,7 @@ El nombre de la función va antes paréntesis ().
 Dentro de los paréntesis van los .red[argumentos].
 
 Los argumentos controlan cómo se comporta la función. 
-]
+]]
 
 --
 

@@ -33,7 +33,7 @@ class: center, middle, inverse, title-slide
 # Introducción a R para ciencia de datos
 ]
 .subtitle[
-## Undergraduate lesson
+## Teaching Demonstration
 ]
 .author[
 ### Kyle Parrish
@@ -163,16 +163,22 @@ Estas herramientas te proporcionarán una base sólida para enfrentar una varied
 # Funciones en R
 
 .large[
+.pull-left[
 Una **función** es un bloque de código diseñado para realizar una tarea específica.
+]]
 
-Las funciones tienen sintaxis:
+--
 
-El nombre de la función seguido de paréntesis ().
+.large[
+.pull-right[
+Las funciones tienen .blue[sintaxis]:
 
-Dentro de los paréntesis van los argumentos.
+El nombre de la función va antes paréntesis ().
+
+Dentro de los paréntesis van los .red[argumentos].
 
 Los argumentos controlan cómo se comporta la función. 
-]
+]]
 
 --
 
@@ -182,9 +188,7 @@ Los argumentos controlan cómo se comporta la función.
 valores &lt;- c(10, 20, 30, 40, 50)
 
 # La función mean toma un argumento principal (x)
-promedio &lt;- mean(valores)
-
-promedio # Devuelve 30
+mean(valores)
 ```
 
 ```
@@ -211,7 +215,7 @@ resultado # Devuelve la media cercana a 5
 ```
 
 ```
-## [1] 4.950978
+## [1] 4.829928
 ```
 
 ---
@@ -233,7 +237,7 @@ valores
 ```
 
 ```
-## [1] 0.9759248 1.8779496 1.6139098 1.6542241 2.5596603
+## [1] 2.140874 2.572667 1.986452 2.492729 2.200810
 ```
 
 ---
@@ -256,13 +260,16 @@ media_valores
 ```
 
 ```
-## [1] 5.363247
+## [1] 4.359538
 ```
 
 --
 
-### Cómos se genera 100 números aleatorios con media 15 y desviación estándar 2?
+# Preguntas  
 
+1. Cómo se genera 100 números aleatorios con media 15 y desviación estándar 2?
+
+2. Cómo guardamos el resultados a un objeto que se llama "chicken"?
 ---
 
 # La vizualización de datos 
