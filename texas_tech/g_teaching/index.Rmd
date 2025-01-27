@@ -201,9 +201,9 @@ valores
 
 # Guardar resultados en objetos  
 
-.large[En R, puedes aplicar una función a datos y guardar el resultado en un objeto para reutilizarlo.]  
+En R, puedes aplicar una función a datos y guardar el resultado en un objeto para reutilizarlo.
 
-### Ejemplo básico:  
+**Ejemplo básico:**  
 ```{r}
 # Genera 10 números aleatorios con media 5 y desviación estándar 2
 valores <- rnorm(n = 10, mean = 5, sd = 2)
@@ -217,11 +217,12 @@ media_valores
 
 --
 
-# Preguntas  
+**Preguntas **
 
 1. Cómo se genera 100 números aleatorios con media 15 y desviación estándar 2?
 
 2. Cómo guardamos el resultados a un objeto que se llama "chicken"?
+
 ---
 
 
