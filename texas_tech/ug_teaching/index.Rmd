@@ -1,8 +1,8 @@
 ---
-title: "Introducción a R para ciencia de datos"
-subtitle: 'Teaching Demonstration'
+title: "La fonología de una L2 y High Variability Phonetic Training"
+subtitle: 'La adquisición de la fonética y fonología del español como L2'
 author  : "Kyle Parrish"
-date    : "Texas Tech</br>January 2025</br>Last update: `r Sys.Date()`"
+date    : "Texas Tech </br>Enero 2025</br>Última actualización: `r Sys.Date()`"
 output:
   xaringan::moon_reader:
     css: [default, hygge, my-css.css, rutgers-fonts]
@@ -12,101 +12,10 @@ output:
       ratio: 16:9
 ---
 
-```{r xaringanExtra-clipboard, echo=FALSE}
-htmltools::tagList(
-  xaringanExtra::use_clipboard(
-    button_text = "<i class=\"fa fa-clipboard\"></i>",
-    success_text = "<i class=\"fa fa-check\" style=\"color: #90BE6D\"></i>",
-  ),
-  rmarkdown::html_dependency_font_awesome()
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(
+  comment = '', fig.width = 6, fig.height = 4, warning = FALSE, message = FALSE
 )
-```
-
-```{r xaringan-themer, include=FALSE}
-library(xaringanthemer)
-style_duo_accent(
-  # primary_color = "#345865",
-  primary_color = "#B56B6F",
-  secondary_color = "#2c8475",
-  black_color = "#4242424",
-  white_color = "#FFF",
-  base_font_size = "25px",
-  # text_font_family = "Jost",
-  # text_font_url = "https://indestructibletype.com/fonts/Jost.css",
-  header_font_google = google_font("Times New Roman", "400", "700"),
-  header_font_weight = "400",
-  inverse_header_color = "#eaeaea",
-  title_slide_text_color = "black",
-  text_slide_number_color = "#9a9a9a",
-  text_bold_color = "#f79334",
-  code_inline_color = "#B56B6F",
-  code_highlight_color = "transparent",
-  link_color = "#2c8475",
-  table_row_even_background_color = lighten_color("#345865", 0.9),
-  extra_fonts = list(
-    google_font("Times New Roman", "400")
-  ),
-  colors = c(
-    green = "#31b09e",
-    "green-dark" = "#2c8475",
-    highlight = "#87f9bb",
-    purple = "#887ba3",
-    pink = "#B56B6F",
-    orange = "#f79334",
-    red = "#dc322f",
-    `blue-dark` = "#002b36",
-    `text-dark` = "#202020",
-    `text-darkish` = "#424242",
-    `text-mild` = "#606060",
-    `text-light` = "#9a9a9a",
-    `text-lightest` = "#eaeaea"
-  ),
-  extra_css = list(
-    ".remark-slide-content h3" = list(
-      "margin-bottom" = 0, 
-      "margin-top" = 0
-    ),
-    ".smallish, .smallish .remark-code-line" = list(`font-size` = "0.9em")
-  )
-)
-xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "share_again"))
-xaringanExtra::use_extra_styles()
-```
-
-
-```{r components, include=FALSE}
-slides_from_images <- function(
-  path,
-  regexp = NULL,
-  class = "hide-count",
-  background_size = "contain",
-  background_position = "top left"
-) {
-  if (isTRUE(getOption("slide_image_placeholder", FALSE))) {
-    return(glue::glue("Slides to be generated from [{path}]({path})"))
-  }
-  if (fs::is_dir(path)) {
-    imgs <- fs::dir_ls(path, regexp = regexp, type = "file", recurse = FALSE)
-  } else if (all(fs::is_file(path) && fs::file_exists(path))) {
-    imgs <- path
-  } else {
-    stop("path must be a directory or a vector of images")
-  }
-  imgs <- fs::path_rel(imgs, ".")
-  breaks <- rep("\n---\n", length(imgs))
-  breaks[length(breaks)] <- ""
-
-  txt <- glue::glue("
-  class: {class}
-  background-image: url('{imgs}')
-  background-size: {background_size}
-  background-position: {background_position}
-  {breaks}
-  ")
-
-  paste(txt, sep = "", collapse = "")
-}
-options("slide_image_placeholder" = FALSE)
 ```
 
 
@@ -115,545 +24,467 @@ class: title-slide-section, middle
 <br>
 <br>
 <br>
-## La **ciencia de datos** (data science) es una disciplina fascinante que te permite convertir datos sin procesar (raw data) en entendimiento, comprensión y conocimiento.
+# Una breve introducción a la fonética y la fonología 
+
+---
+class: title-slide-section, middle
+<br>
+## La **fónetica** es el estudio de los sonidos 
 
 ---
 
-# La clase de hoy
+
+background-image: url(./images/praat_ex.png)
+background-size: contain
+
+---
+class: title-slide-section, middle
+
+<br>
+## La **fonologia** es el estudio de los sistemas de sonidos 
+
+---
+
+background-image: url(./images/phon_sp.png)
+background-size: contain
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+## ¿Porque estudiamos los dos?
+
+
+---
+
+class: title-slide-section, middle
+
+
+<br>
+<br>
+## **El habla es inherentemente variable**.
+
+### El mismo sonido nunca se produce de exactamente la misma manera 
+
+--
 
 .large[
-Aprenderemos el lenguaje de programación **R** 
+A pesar de esto, nos entendemos. ¿Por qué? 
+
+¿Qué es un **sonido**? Definimos en grupos.
+]
+
+---
+
+# Possibles respuestas
+
+--
+
+### Aunque el habla es variable, nos entendemos. ¿Por qué? 
+
+--
+
+> Nos entendemos porque el hablante **entiende una categoria abstracta** dentro del habla variable. Por ejemplo, aunque el sonido /p/ puede tener una duración en ingles entre 50 y 150 millisegundos, entendemos /p/.
+
+
+
+---
+
+# Defininos el concepto de sonido 
+--
+.pull.left[
+### Un sonido puede ser un valor acustico que se puede medir.
+
+- La duración.
+
+- La frecuencia (f0)
+
+- La calidad (los formantes)
+
+]
+
+.pull.right[
+```{r, echo = FALSE}
+knitr::include_graphics(here::here("texas_tech", "ug_teaching", "images", "ac.png"))
+```
+]
+
+
+---
+
+background-image: url(./images/praatlogo.png)
+background-size: contain
+
+.footnote[PRAAT https://www.fon.hum.uva.nl/praat/]
+
+
+---
+
+# Las Vocales 
+
+.large[
+[Describimos las vocales según la posición de la lengua en la boca](https://docs.google.com/presentation/d/1RNlL3PFT7Y22ZNos19JJLxYZYyiDQpygFcRQbWAtA44/edit#slide=id.g29822fe7ee9_0_149)
 ]
 
 --
 
 .large[
-El objetivo de hoy es ofrecer una **visión general** de qué es R y cómo puede ser útil.
-
-Codificaremos juntos: no obstante, aquí tienes enlaces si quieres descargar más.
+La posición relativa de la lengua en la boca tiene un correlato acústico: **los formantes**.
 ]
 
 --
 
 .large[
-https://posit.co/downloads/ 
+Un formante es el pico de intensidad en el espectro de un sonido que se mide en hercios (Hz) 
+]
 
-https://posit.cloud
+
+
+.footnote[https://kparrish92.shinyapps.io/formant_app/]
+
+---
+
+background-image: url(./images/formantes_2.png)
+background-size: contain
+
+
+---
+
+# Defininos el concepto de sonido 
+--
+.pull.left[
+### Un sonido puede ser un valor abstracto - el sonido "b" 
 ]
 
 --
 
 .large[
-El contenido de esta lección viene del libro: https://es.r4ds.hadley.nz/ 
+¿Por qué son diferentes, por ejemplo, /p/ y /b/?
 ]
+
+--
+
+.large[
+Son diferentes, porque se usa para distinguir palabaras (pala vs. bala)
+
+Por eso, se llaman **fonemas** (ej. Los sonidos [p] y [b] son fonémicos en español)
+]
+
+---
+
+class: title-slide-section, middle
+<br>
+## ¿Son diferentes, los sonidos .red[[p]] y .blue[[b]] en inglés y español?
+
+---
+
+# Las diferencias fonéticas y fonémicas.
+
+--
+
+.large[
+Los sonidos .red[[p]] y .blue[[b]] existen en inglés y español y se usa para disinguir palabras - así que **no hay una diferencia fonémica**.
+]
+
+--
+
+.large[
+Pero sí **hay diferencias fonéticas** importantes entres estos sonidos en las lenguas romances y las lenguas germánicas. 
+]
+ 
+---
+
+# Las diferencias fonéticas y fonémicas.
+
+.large[
+.pull-left[
+La **.green[/p/] del inglés** se aspira y tiene una duración larga.
+
+La **.green[/b/] del inglés** no se aspira y tiene una duracion más breve de la /p/.
+]]
+
+--
+
+.large[
+.pull-right[
+La **.blue[/p/] del español** no se aspira y tiene una duración parecida al la /b/ del inglés.
+
+La **.blue[/b/] del español** muestra lo que se llama "prevoicing" (un valor negativo).
+]]
+
+---
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+# Hay preguntas?
+
+
+---
+
+# La fonética es dificil de aprender. 
+
+.pull-left[
+.full-width[
+.content-box-grey[
+No se encuentra muchas personas que hablen "perfectamente" en su L2. 
+
+Hay muchos estudios que muestran que **la producción de los L2-learners** todavía se juzga como **acentuados** por los hablantes nativos, aun después de años (Oyama 1976; Flege et al. 1995a; Flege et al. 1999).
+
+También **no perciben las diferencias/contrastes** entre ciertos sonidos  (Caramazza et al. 1973; Bohn and Flege 1992; Flege et al. 1992, 1995b, 1999b; Munro et al. 1995; MacKay et al. 2001; Piske et al. 2002).
+]]]
+--
+
+.pull-right[
+.full-width[
+.content-box-grey[
+Hay muchas ideas que se propone para explicar por qué:
+
+- Varios factores relacionados con la edad. 
+
+- La duración de la residencia en país nuevo.
+
+- La motivación. 
+
+- El aptitud para el aprendizaje de idiomas.
+
+]]]
+
+---
+
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+# ¿Cómo enseñamos fonética L2?
+
+---
+
+# El efecto McGurk
+
+La percepción del habla involucra tanto pistas acústicas como visuales.
+
+Observemos esto a través del **efecto McGurk**.
+
+**Mira este video:** [El efecto McGurk](https://www.youtube.com/watch?v=2k8fHR9jKVM)
+
+---
+
+# High Variability Phonetic Training
+
+.pull-left[
+.full-width[
+.content-box-grey[
+**High Variability Phonetic Training** (HVPT) es un método de enseñar la percepción de nuevos contrastes de la L2.
+
+Normalmente, los alumnos de L2 están expuestos sobre todo a la voz de su profesor como ejemplo de pronunciación.
+
+HVPT utiliza .blue[varias voces], en vez de solo una, en entranemineto.
+
+Hay evidencia que la producción mejora junto con la percepción.
+]]]
 
 ---
 
 # Introducción 
 
-.large[
 .pull-left[
-La exploración de datos es el arte de .blue[mirar tus datos], .green[generar hipótesis rápidamente], .orange[testearlas].
-]]
+.full-width[
+.content-box-grey[
+El uso de varias voces **introduce variabilidad**.
+]]]
+
+
+
+<img src="./images/wave.jpeg"
+     width="254px" height="327px"
+     style="position:absolute; left:800px; top:150px;">
+
+
+---
+
+# La percepción del habla
+
+.pull-left[
+.full-width[
+.content-box-grey[
+En la percepción del habla:
+
+el hablante produce **un señal acústico variable**, codificado con información fonémica.
+
+el oyente tiene que percibir este señal y **mapea esta información** en su representación mental. 
+]]]
 
 --
 
 .pull-right[
-```{r, echo=FALSE}
-knitr::include_graphics(here::here("texas_tech", "ug_teaching", "images", "intro.png"))
-```
-]
+.full-width[
+.content-box-grey[
+Se hace esto usando **pistas acústicas**, o dimensiones comunes presentes en el señal acúsitco   
 
+- Percibimos frequencias en herzios de las vocales que se llaman **formantes** que nos ayuda a identificarlas.
 
-
+- Somos sensibles a **la duración** (la diferencia entre /p/ y /b/ se debe a la duración)
+]]]
 
 ---
+
+# La percepción del habla
+
+
+.pull-left[
+.full-width[
+.content-box-grey[
+Los sonidos que producimos son **variables**, pero entendemos **categorías**.
+
+Eso implica **entendemos algo importante en común** que nos permite identificar los sonidos del habla con éxito. 
+]]]
+
+--
+
+.pull-right[
+.full-width[
+.content-box-grey[
+Hablantes diferentes de la misma lengua **producen los sonidos usando las mismas pistas acústicas**
+
+A la vez producen otros aspectos del mismo sonido de **formas muy individuales**. 
+
+El aprendiz no sabe al principio cuáles son las pistas importantes, y no tiene suficiente información con menos voces.
+
+Con el HVPT, el uso de varias voces permite que los aprendices aprendan implícitamente **qué pistas acústicas son fiables entre varios hablantes** para distinguir sonidos y cuáles no lo son. 
+]]]
+---
+
+# La Historia de HVPT: el experimento principal 
+
+.pull-left[
+.full-width[
+.content-box-grey[
+.green[Logan, Lively, y Pisoni (1991)]
+
+Grabaron .red[68] pares mínimos de /r/ y /l/ (rock-lock) en inglés producidos por 6 hablantes. 
+
+Los oyentes L1 japoneses realizaron un pretest, fueron entrenados y un posttest (idéntico al pretest). 
+
+Había un grupo con entranamiento con 6 voces y otro con una voz.
+
+En cada fase, realizaron una .red[tarea de identificación de elección forzada] (¿es esta palabra rock o lock)?
+]]]
+
+--
+
+.pull-right[
+.full-width[
+.content-box-grey[
+.red[Resultados]
+
+Completaron .red[15 sesiones de entrenamiento] a lo largo de tres semanas. 
+
+Sólo mejoraron los que habían entrenado.
+
+Las mejoras también se generalizan a palabras nuevas.
+
+El aprendizaje parece durar **a largo plazo** (Lively, Pisoni, Yamada, Tohkura, Yamada, 1994).
+
+También **mejoraron su pronunciación**.
+]]]
+
+---
+
+# Retos y otros factores 
+
+.pull-left[
+.full-width[
+.content-box-grey[
+**El HVPT podría ser más eficaz para algunos alumnos que para otros.**
+Las personas con mejor percepción inicial del tono respondieron mejor al entrenamiento de contrastes tonales (en mandarín) 
+
+Para una menor capacidad inicial en la percepción del habla preexistente, el orden de los estímulos es importante.
+]]]
+
+--
+
+.pull-right[
+.full-width[
+.content-box-grey[
+**La forma en que realizamos el entranamiento importa (con psuedowords o palabras reales).**
+
+Thomson y Derwing (2016):  40 estudiantes de inglés L2 mejoraron la producción después de HVPT con palabras falsas (psuedowords), pero no con palabras reales.
+]]]
+
+---
+
+# Extra info: Opciones de orden de estímulo
+
+El orden de los estímulos en el entrenamiento también puede causar diferencias.
+
+Los formatos en bloque o mixto.
+
+Para una **menor capacidad inicial** en la percepción del habla preexistente, el formato de **bloque era mejor** que el mixto.
+
+Ejemplo: Tenemos tokens de hablantes A, B y C.
+
+El formato en bloque: .blue[TA], .blue[TA], .blue[TA], .green[TB], .green[TB], .green[TB], .red[TC], .red[TC], .red[TC].
+
+El formato mixto:.blue[TA], .green[TB], .red[TC], .blue[TA], .green[TB], .red[TC], .blue[TA], .green[TB], .red[TC]
+
+* Token del hablante A = TA
+* Token del hablante B = TB
+* Token del hablante C = TC
+
+---
+
+# Otras consideraciones 
+
+.pull-left[
+.full-width[
+.content-box-grey[
+**Preguntas abiertas en la investigación** 
+
+¿Cuántos hablantes son ideales?
+
+¿Cuántos contextos fonéticos son ideales? 
+
+¿Cuántos sonidos podemos entrenar a la vez?
+]]]
+
+---
+
+# Repaso 
+
+.large[
+.red[La fonética] se refiere a los sonidos del habla, mientras que .green[la fonología] es su uso en la categorización y creación de palabras.
+]
+
+--
+
+.large[
+Aprender fonética en L2 es difícil: la L1 es la principal fuente de dificultad.
+]
+
+--
+
+.large[
+Para el aprendizaje puramente acústico, métodos de entrenamiento como el HVPT han demostrado su eficacia.
+]
+
+--
+
+.large[
+Aún queda trabajo por hacer para mejorar y poner en práctica la formación y su aplicación a los distintos tipos de alumnos.
+]
+
+---
+
 class: title-slide-section, middle
 <br>
 <br>
 <br>
 <br>
-## ¿Qué se puede aprender?
+# ¡Gracias!
 
-- **Importar**: Cargar datos desde archivos, bases de datos o APIs a R.
-- **Ordenar**: Estructurar los datos de manera que cada columna sea una variable y cada fila una observación.
-- **Transformar**: Filtrar observaciones, crear nuevas variables y calcular estadísticas resumidas.
-- **Visualizar**: Crear gráficos que revelen patrones y tendencias en los datos.
-- **Modelar**: Construir modelos matemáticos o computacionales para responder preguntas específicas.
-
-Estas herramientas te proporcionarán una base sólida para enfrentar una variedad de desafíos en la ciencia de datos utilizando R.
-
----
-
-# El tidyverse
-
-.large[
-- El **tidyverse** es un conjunto de paquetes en R diseñados para trabajar juntos de manera armoniosa.
-  
-- Cada paquete aborda una parte específica del flujo de trabajo de análisis de datos:
-  - **dplyr**: Manipulación de datos.
-  - **ggplot2**: Visualización de datos.
-  - **tidyr**: Ordenamiento de datos.
-  - **readr**: Importación de datos.
-  - **purrr**: Programación funcional.
-  - **tibble**: Estructura de datos moderna.
-]
-
----
-
-# ¿Qué es un paquete?
-
-.large[
-- En R, un **paquete** es una colección de funciones, datos, y documentación agrupados en una biblioteca.
-  
-- Los paquetes deben instalarse y luego cargarse antes de usarlos:
-]
-
-```{r{}
-  # Instalar el paquete tidyverse
-  install.packages("tidyverse")
-  
-  # Cargar el paquete tidyverse
-  library(tidyverse)
-```          
-
----
-
-# Funciones en R
-
-.large[
-.pull-left[
-Una **función** es un bloque de código diseñado para realizar una tarea específica.
-
-Las funciones tienen .blue[sintaxis]:
-
-El nombre de la función va antes paréntesis ().
-
-Dentro de los paréntesis van los .red[argumentos].
-
-Los argumentos controlan cómo se comporta la función. 
-]]
-
---
-
-```{r}
-# Una función básica: calcular la media
-valores <- c(10, 20, 30, 40, 50)
-
-# La función mean toma un argumento principal (x)
-mean(valores)
-```
-
----
-
-# Ejemplo: Una función con más de un argumento
-
-.large[
-Veamos un ejemplo usando las funciones `mean()` y `rnorm()`, donde esta última tiene **tres argumentos**:
-]
-
-```{r}
-# rnorm genera números aleatorios con distribución normal
-valores <- rnorm(n = 100, mean = 5, sd = 2)
-
-# mean calcula la media de esos valores
-resultado <- mean(valores)
-
-resultado # Devuelve la media cercana a 5
-```
-
----
-
-# ¿Qué hace `rnorm()`?  
-
-.large[**La función `rnorm()` genera números aleatorios que siguen una distribución normal.**]  
-
-### Argumentos principales:  
-- `n`: Cantidad de números a generar.  
-- `mean`: Valor medio o promedio de la distribución.  
-- `sd`: Desviación estándar que determina la variabilidad.  
-
-### Ejemplo:  
-```{r}
-valores <- rnorm(n = 5, mean = 2, sd = 1)
-valores
-```
-
----
-
-# Guardar resultados en objetos  
-
-.large[En R, puedes aplicar una función a datos y guardar el resultado en un objeto para reutilizarlo.]  
-
-### Ejemplo básico:  
-```{r}
-# Genera 10 números aleatorios con media 5 y desviación estándar 2
-valores <- rnorm(n = 10, mean = 5, sd = 2)
-
-# Calcula la media y guarda el resultado en un objeto
-media_valores <- mean(valores)
-
-# Imprime el resultado
-media_valores
-```
-
---
-
-# Preguntas  
-
-1. Cómo se genera 100 números aleatorios con media 15 y desviación estándar 2?
-
-2. Cómo guardamos el resultados a un objeto que se llama "chicken"?
----
-
-# La vizualización de datos 
-
-
-> “Un simple gráfico ha brindado más información a la mente del analista de datos que cualquier otro dispositivo”. — John Tukey
-
---
-
-.large[Empezamos con **la vizualización**.]
-
----
-
-# La vizualización de datos 
-
-Vamos a visualizar los datos usando el paquete `ggplot2`.
-
-```{r}
-library(tidyverse)
-# install.packages("datos")
-library(datos)
-```
-
----
-
-# Los automóviles
-
-.large[
-.pull-left[
-Usemos nuestro primer gráfico para responder una pregunta: .blue[¿los automóviles con motores grandes consumen más combustible que los automóviles con motores pequeños?] 
-]]
-
---
-
-.large[
-.pull-right[
-Usamos el data frame `millas` que se encuentra en el paquete `datos` (datos::millas). 
-]]
-
----
-
-# El data frame millas
-
-.large[
-Un **data frame** es una colección rectangular de variables (columnas) y observaciones (filas). 
-]
-
---
-
-.large[
-El data frame `millas` contiene observaciones para 38 modelos de automóviles recopiladas.
-]
-
-```{r}
-millas
-```
-
----
-
-# El data frame millas
-
-.large[
-Entre las variables de millas se encuentran:
-
-.blue[`cilindrada`]: tamaño del motor del automóvil, en litros.
-
-.green[`autopista`]: eficiencia del uso de combustible de un automóvil en carretera, en millas por galón.
-
-Al recorrer la misma distancia, un automóvil de baja eficiencia consume más combustible que un automóvil de alta eficiencia.
-]
-
----
-
-# Usamos ggplot
-
-.large[
-.pull-left[
-Para graficar millas, ejecuta este código para poner cilindrada en el eje `x` y autopista en el eje `y`:
-]]
-
---
-
-.large[
-.pull-right[
-```{r}
-ggplot(data = millas) +
-  geom_point(mapping = aes(x = cilindrada, y = autopista))
-```
-]]
-
----
-
-# Usamos ggplot
-
-.large[
-.pull-left[
-El gráfico muestra una .red[relación negativa] entre el tamaño del motor (cilindrada) y la eficiencia del combustible (autopista). 
-]]
-
-.pull-right[
-```{r, echo = FALSE}
-ggplot(data = millas) +
-  geom_point(mapping = aes(x = cilindrada, y = autopista))
-```
-]
-
----
-
-# Ejercicios
-
-.pull-left[
-- Ejecuta `ggplot(data = millas)`. ¿Qué observas?
-
-- ¿Cuántas filas hay en millas? ¿Cuántas columnas?
-
-- Hacemos un gráfico de dispersión (scatterplot) de clase versus traccion? ¿Por qué no es útil este gráfico?
-]
-
----
-
-# Ejercicios
-
-```{r}
-ggplot(data = millas)
-```
-
----
-
-# Ejercicios
-
-```{r}
-nrow(millas) # filas
-ncol(millas) # columnas 
-```
-
----
-
-# Ejercicios
-
-.large[
-.pull-left[
-```{r}
-ggplot(data = millas) +
-  geom_point(mapping = aes(x = clase, y = traccion))
-```
-]]
-
---
-
-.large[
-.pull-right[
-.large[No es útil porque no muestra todos los puntos de dato].
-]]
-
----
-
-# Mapeos estéticos
-
-.pull-left[
-En el siguiente gráfico, un grupo de puntos (resaltados en rojo) parece quedar fuera de la tendencia lineal.
-
-Estos automóviles tienen un kilometraje mayor de lo que esperaríamos. ¿Cómo puedes explicar estos vehículos?
-]
-
---
-
-.pull-right[
-```{r, echo=FALSE}
-knitr::include_graphics(here::here("texas_tech", "ug_teaching", "images", "autopista_red.png"))
-```
-]
-
----
-
-# Mapeos estéticos
-
-.pull-left[
-Supongamos que estos automóviles son híbridos. 
-
-Una forma de probar esta hipótesis es observando la variable que indica la `clase` de cada automóvil.
-]
-
-
-.pull-right[
-```{r, echo=FALSE}
-knitr::include_graphics(here::here("texas_tech", "ug_teaching", "images", "autopista_red.png"))
-```
-]
-
----
-
-# Mapeos estéticos
-
-Puedes agregar una tercera variable, como clase, a un diagrama de dispersión bidimensional asignándolo a un .green[parámetro estético].
-
---
-
-Un **parámetro estético** (o estética) es una propiedad visual de los objetos de un gráfico.
-
---
-
-Las estéticas incluye cosas como el tamaño, la forma o el color de tus puntos
-
----
-
-# Mapeos estéticos
-
-```{r}
-ggplot(data = millas) +
-  geom_point(mapping = aes(x = cilindrada, y = autopista, color = clase))
-```
-
----
-
-# Errores 
-
-.large[
-.pull-left[
-Una gran parte de la codificación consiste en **corregir errores**.
-
-Podemos ver aquí que los puntos se vuelven azules cuando no están con los otros elementos estéticos.
-
-Cuando los elementos están dentro de `aes()`, se definen de acuerdo con los datos.
-]]
-
-
-.large[
-.pull-right[
-Aquí, el color **no transmite información sobre una variable**, sino que cambia la apariencia del gráfico.
-
-```{r}
-ggplot(data = millas) +
- geom_point(mapping = aes(x = cilindrada, y = autopista), color = "blue")
-```
-]]
-
----
-
-# Ejercicios
-
-.large[
-¿Qué no va bien en este código? ¿Por qué hay puntos que no son azules?
-]
-
---
-
-```{r}
-ggplot(data = millas) +
-geom_point(mapping = aes(x = cilindrada, y = autopista, color = "blue"))
-```
-
----
-
-# Ejercicios
-
-¿Qué variables en millas son categóricas? ¿Qué variables son continuas?
-
-```{r}
-?millas
-```
-
-
----
-
-## ¿Qué variables en millas son categóricas? ¿Qué variables son continuas?
-
-.pull-left[
-**Variables categóricas**
-
-fabricante
-
-modelo
-
-transmision
-
-traccion
-
-combustible
-
-clas
-]
-
---
-
-.pull-right[
-**Variables continuas**
-
-cilindrada
-
-anio
-
-cilindros
-
-ciudad
-
-autopista
-]
-
-
----
-
-#### Asigna una variable continua a color, size, y shape. ¿Cómo se comportan estas estéticas de manera diferente para variables categóricas y variables continuas?
-
-```{r}
-ggplot(data = millas) +
-  geom_point(mapping = aes(x = cilindrada, y = autopista, color = cilindrada))
-```
-
---
-
-Los colores son de diferentes tonos.
-
----
-
-#### ¿Qué ocurre si asignas o mapeas la misma variable a múltiples estéticas?
-
-```{r}
-ggplot(data = millas) +
-  geom_point(mapping = aes(x = cilindrada, y = cilindrada, color = cilindrada))
-```
-
-Tenemos una linea recta.
-
----
-
----
-
-# Conclusión
-
-.large[
-- Hemos explorado **R** como una herramienta poderosa para la ciencia de datos.
-]
-
---
-
-.large[
-- Aprendimos sobre:
-  - La **visualización de datos** usando `ggplot2`.
-  - El uso del **tidyverse** para transformar y analizar datos.
-  - Cómo funcionan los **paquetes** y las **funciones** en R.
-]
-
---
-
-.large[
-- Recuerda:
-  - La ciencia de datos es un proceso iterativo: **Explora, visualiza, transforma y repite.**
-  - Usa los recursos como [R para Ciencia de Datos](https://es.r4ds.hadley.nz/) para seguir aprendiendo.
-]
-
---
-
-## ¡Gracias por tu atención!
