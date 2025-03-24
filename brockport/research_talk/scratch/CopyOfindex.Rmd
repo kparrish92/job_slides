@@ -1,0 +1,350 @@
+---
+title: "Individual differences must underlie L3 acquisition"
+subtitle: 'Job Talk'
+author  : "Kyle Parrish"
+date    : "</br>Winter 2024</br>Last update: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: [default, hygge, my-css.css, rutgers-fonts]
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: false
+      ratio: 16:9
+---
+
+```{r, setup, include=FALSE}
+library("fontawesome")
+library("RefManageR")
+knitr::opts_chunk$set(
+  comment = '', fig.width = 6, fig.height = 6, message = FALSE, warning = FALSE, echo = FALSE
+)
+```
+
+```{r xaringan-themer, include=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  # primary_color = "#345865",
+  primary_color = "#B56B6F",
+  secondary_color = "#2c8475",
+  black_color = "#4242424",
+  white_color = "#FFF",
+  base_font_size = "25px",
+  # text_font_family = "Jost",
+  # text_font_url = "https://indestructibletype.com/fonts/Jost.css",
+  header_font_google = google_font("Times New Roman", "400", "700"),
+  header_font_weight = "400",
+  inverse_header_color = "#eaeaea",
+  title_slide_text_color = "black",
+  text_slide_number_color = "#9a9a9a",
+  text_bold_color = "#f79334",
+  code_inline_color = "#B56B6F",
+  code_highlight_color = "transparent",
+  link_color = "#2c8475",
+  table_row_even_background_color = lighten_color("#345865", 0.9),
+  extra_fonts = list(
+    google_font("Times New Roman", "400")
+  ),
+  colors = c(
+    green = "#31b09e",
+    "green-dark" = "#2c8475",
+    highlight = "#87f9bb",
+    purple = "#887ba3",
+    pink = "#B56B6F",
+    orange = "#f79334",
+    red = "#dc322f",
+    `blue-dark` = "#002b36",
+    `text-dark` = "#202020",
+    `text-darkish` = "#424242",
+    `text-mild` = "#606060",
+    `text-light` = "#9a9a9a",
+    `text-lightest` = "#eaeaea"
+  ),
+  extra_css = list(
+    ".remark-slide-content h3" = list(
+      "margin-bottom" = 0, 
+      "margin-top" = 0
+    ),
+    ".smallish, .smallish .remark-code-line" = list(`font-size` = "0.9em")
+  )
+)
+xaringanExtra::use_xaringan_extra(c("tile_view", "animate_css", "tachyons", "share_again"))
+xaringanExtra::use_extra_styles()
+```
+
+
+```{r components, include=FALSE}
+slides_from_images <- function(
+  path,
+  regexp = NULL,
+  class = "hide-count",
+  background_size = "contain",
+  background_position = "top left"
+) {
+  if (isTRUE(getOption("slide_image_placeholder", FALSE))) {
+    return(glue::glue("Slides to be generated from [{path}]({path})"))
+  }
+  if (fs::is_dir(path)) {
+    imgs <- fs::dir_ls(path, regexp = regexp, type = "file", recurse = FALSE)
+  } else if (all(fs::is_file(path) && fs::file_exists(path))) {
+    imgs <- path
+  } else {
+    stop("path must be a directory or a vector of images")
+  }
+  imgs <- fs::path_rel(imgs, ".")
+  breaks <- rep("\n---\n", length(imgs))
+  breaks[length(breaks)] <- ""
+
+  txt <- glue::glue("
+  class: {class}
+  background-image: url('{imgs}')
+  background-size: {background_size}
+  background-position: {background_position}
+  {breaks}
+  ")
+
+  paste(txt, sep = "", collapse = "")
+}
+options("slide_image_placeholder" = FALSE)
+```
+
+
+```{r}
+library(readr)
+library(here)
+library(sjPlot)
+mod0 = read_rds(here("practice_talk", "data", "study1", "mod0.rds"))
+```
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## Knowledge of many languages is a **bridge to greater oppotunities** that have a lasting positive impact on the individual and society 
+
+--
+
+### Social and class mobility 
+
+--
+
+### Greater cultural understanding 
+
+--
+
+### Employment opportunities 
+
+---
+
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## This is especially true in Lubbock 
+
+--
+
+XX% Hisp 
+XX% L2 
+
+--
+
+XX class X Y Z 
+
+---
+
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## But there is a problem: in adulthood, learning a new language is a difficult undertaking.
+
+--
+
+### Research shows that there is a wide range of ultimate attainment. 
+
+---
+
+## The big question: 
+
+--
+
+### **What factors** play a role in ultimate attainment, causing this variation? 
+
+--
+
+.large[
+.pull-left[
+
+
+Can we **predict** a person's ultimate attainment in a new language?
+]]
+
+--
+
+.large[
+.pull-right[
+Can we **intervene** in the process and optimize language learning ability? 
+]]
+
+---
+
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## Contextualization 
+
+---
+
+# Frequent assumptions in L2 acquisition 
+
+.pull-left[
+1. During L2 learning, the L1 plays an important role.
+
+2. Third language are subsumed under L2 learning (guided by L1-L2 differences)
+]
+
+---
+
+# The evidence suggests L3 learning and L2 learning are different 
+
+Research in L3 learners has shown that they are not simply learning a second L2 - both the L1 and L2 play a role.
+
+--
+
+Findings conflict on exactly how: 
+ - no access to L1/L2
+ - access to both
+ - only access to helpful aspects
+
+--
+
+## So - it is unclear given the mixed findings whether L3 acquisition follows any single one of these patterns, or, alternatively, if they could **all explain the process for certain individuals**, explained by particular differences. 
+
+--
+
+If we better understand what individual differences are relevant, we can leverage our work to make a more socially responsible impact that can be utilized by its beneficiaries
+
+---
+
+# A relevant example 
+
+A lot of evidence comes from L3 speakers with a **monolingual upbringing** and **does not consider Heritage bilinguals** learning a new language.
+
+The problem here is that evidence to inform language acquisition based solely on learners brought up monolingual **would not be an equitable investment** in the population of L3 learners and disproportionately benefit only some learners. 
+
+Differences in Heritage L3 learners and L3 monolingual upbringing learners: 
+- more balanced bilinguals are impacted by their more dominant languages
+- monolingual upbringing sensitive to other factors.
+
+There are still many conflicting findings to sort out. 
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## One way to sort out the mixed findings is **replication**. If a general finding is true, we should generate similar data if we carry out the same experiment on the same population.
+
+---
+
+TPM replication study 
+
+Partial replication - probably because of an issue with power and narratvie conclustions on the basis of the statistical tests 
+
+---
+
+The study did DP syntax and looked at L3 BP or Italian by two bilingaul groups. (examples in the languages)
+
+---
+
+The groups were L1 English L2 Spanish and L1 Italian L2 English
+
+The question was whether these two would treat the DP strucutres differently, if not, the assumption was that they were both influenced by Sp, if so, order of ac plays a role.
+
+---
+
+The study concluded that Spanish, whether it was the L1 or L2, impcated the interpretation of DP sentences 
+
+---
+
+The issue was that few participants were included in the study - brining in the chance that power was low. 
+
+--
+
+Low power would increase the risk of a false negative finding.
+
+---
+
+I replicated this study, creating new materials and keeping the L3 constant 
+
+---
+
+The results revealed a differences as the sample increased, while also suggesting that the original study may have been a false negative, given that it could only relaibly detect rather large effects. 
+
+---
+
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+## Additionally, if these findings reflect language-wide influence or a universal language learning process, **they should generalize**.
+
+--
+
+Many linguistic structures or levels within the individual.
+
+--
+
+New language triplets. 
+
+---
+
+## So, the big questions are, within L3 findings - 
+
+--
+
+What replicates?
+
+--
+
+What generalizes among languages? 
+
+--
+
+What differs as a function of the individual?
+
+---
+
+# Study 1: Replication 
+
+TPM stuff
+
+Partial replication.... but no evidence on the TOST. 
+
+---
+
+# Study 2: Replication
+
+
+
+# The next wave of questions:
+
+What individual factors are associated with the overcoming of non-facilitative influence from the L1 or L2? Which factors impede access to otherwise helpful influence?
+
+Are all linguistic levels subject to the same influence?
+
+Will online data provide new insights? Are there important differences in how CLI manifests depending upon processing load?
+
+Do findings generalize to new language triplets/L3s?

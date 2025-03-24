@@ -1,0 +1,261 @@
+---
+title: "Informar bajo amenaza"
+subtitle: 'SPN 350'
+author  : "Kyle Parrish"
+date    : "SUNY Brockport </br>Enero 2025</br>Última actualización: `r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: [default, hygge, my-css.css, rutgers-fonts]
+    lib_dir: libs
+    nature:
+      countIncrementalSlides: true
+      ratio: 16:9
+---
+
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(
+  comment = '', fig.width = 6, fig.height = 4, warning = FALSE, message = FALSE
+)
+```
+
+# Plan de clase
+
+Duración de la clase: 50 minutos 
+
+**Contenido**
+
+*Parte 1*: Resumen de la lectura (10 minutos)
+
+*Parte 2*: Pregunta de debate 1 (10 minutos)
+
+*Parte 3*: Pregunta de debate 2 (10 minutos)
+
+*Parte 4*: Pregunta de debate 3 (10 minutos)
+
+*Parte 5*: Conclusión (10 minutos)
+
+---
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+# **Parte 1**: Resumen de la lectura
+
+---
+
+# Parte 1: Resumen de la lectura
+
+```{r, echo=FALSE}
+library(countdown)
+
+countdown(minutes = 5)
+```
+
+.large[¿De qué se trata la lectura?]
+
+--
+
+.pull-left[
+.large[
+**Preguntas**: 
+
+.blue[
+¿Cómo es ser periodista en México y Colombia?
+
+¿Cuál es la evidencia del problema?
+
+¿Qué es la autocensura? ¿Por qué ocurre en el contexto de México y Colombia?
+]]]
+
+--
+
+.pull-right[
+.large[
+**Respuestas**:
+
+Es peligroso ser periodista en México y Colombia por los asesinatos, secuestros, amenazas, torturas, y extorsiones.
+
+El número de asesinatos de periodistas.
+
+Limitación o censura que se impone uno a sí mismo. Pasa para evitar las amenazas.
+]]
+
+
+
+---
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+# Pregunta de debate 1
+  
+---
+
+# Pregunta de debate 1
+
+Parte 1: Discusión en grupos de 2-3 (5 minutos)
+
+Parte 2: Discusión con la clase entera (5 minutos)
+
+```{r, echo=FALSE}
+library(countdown)
+
+countdown(minutes = 5)
+```
+
+.pull-left[
+.large[
+**Preguntas**
+.blue[
+¿Hay una solución al problema que tiene la prensa en México y Colombia? 
+
+Si tuvieras poder para cabmiar la situación, que harías?]
+]]
+
+--
+
+.pull-right[
+.large[
+**Vocabulario útil**
+
+Botón de pánico: *panic button* 
+
+Guardaespaldas: *body guard*
+
+Armar: *to arm*
+]]
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+# Pregunta de debate 2
+  
+---
+
+# Pregunta de debate 2
+
+Parte 1: Discusión en grupos de 2-3 (5 minutos)
+
+Parte 2: Discusión con la clase entera (5 minutos)
+
+```{r, echo=FALSE}
+library(countdown)
+
+countdown(minutes = 5)
+```
+
+.pull-left[
+.large[
+**Pregunta**
+
+En las últimas semanas, Donald Trump ha dicho que reportajes/noticias recientes de la CNN eran ilegales porque le criticaban. 
+
+.blue[
+¿Estás de acuerdo?
+
+¿Puede una noticia ser ilegal?]
+]]
+
+--
+
+.pull-right[
+.large[
+**Vocabulario útil**
+
+Libertad de prensa: *freedom of press*
+
+Libertad de expresión: *freedom of speech*
+
+Derechos fundamentales de la constitución de los EEUU: *fundamental rights of the US constituion*. 
+]]
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+# Pregunta de debate 3
+
+---
+
+# Pregunta de debate 3
+
+```{r, echo=FALSE}
+library(countdown)
+
+countdown(minutes = 5)
+```
+
+.pull-left[
+.large[
+**Pregunta**
+
+Trump también ha dicho que prohibiría las protestas ilegales en los campus universitarios. 
+
+.blue[
+¿Existen las protestas ilegales?
+
+
+¿Podemos saber si una protesta es ilegal antes de que se occurra?
+]
+]]
+
+--
+
+.pull-right[
+.large[
+**Vocabulario útil**
+
+Disturbio: *riot*
+
+Gas lacrimógeno: *tear gar* 
+
+Detinido: *arrested*
+]]
+
+---
+
+class: title-slide-section, middle
+<br>
+<br>
+<br>
+<br>
+# Conclusión 
+
+---
+
+# Conclusión 
+
+.large[
+.pull-left[
+**La autocensura en México y Colombia**
+
+México y Colombia son dos de los países más peligrosos del mundo para ser periodista.
+
+Los periodistas suelen autocensurarse para evitar la violencia o la muerte.
+]
+]
+--
+
+.large[
+.pull-right[
+**El aumento del autoritarismo en los EEUU**
+
+Estados Unidos muestra actualmente los primeros signos de censura.
+
+El presidente de EE.UU. ha declarado que las noticias críticas con él y las protestas sobre algunos temas son ilegales.
+
+El futuro probablemente tendrá más ataques a la libertad de expresión: el autoritarismo depende de la disminución de la democracia.
+
+]]
+
+
+
